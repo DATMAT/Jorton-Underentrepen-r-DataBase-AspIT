@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="JudGui.UcEntrepeneursStatusChange"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:JudGui"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="840"
+             d:DesignWidth="1800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Viewbox x:Name="LabelEditEntrepeneursStatus"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Grid.ColumnSpan="4"
+                 Margin="1"
+                 HorizontalAlignment="Left">
+            <TextBlock FontWeight="Bold">Rediger Status for Entrepenører</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelSearch"
+                 Grid.Column="1"
+                 Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Margin="1"
+                 HorizontalAlignment="Left">
+            <TextBlock>Søg:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelEntrepeneurs"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                 Grid.ColumnSpan="2"
+                 Margin="1"
+                 HorizontalAlignment="Left">
+            <TextBlock>Entrepenører:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelStatus"
+                 Grid.Column="1"
+                 Grid.Row="9"
+                 Grid.ColumnSpan="2"
+                 Margin="1"
+                 HorizontalAlignment="Left">
+            <TextBlock>Status:</TextBlock>
+        </Viewbox>
+
+
+        <xctk:WatermarkTextBox x:Name="TextBoxSearch"
+                               FontSize="12"
+                               Grid.Column="3"
+                               Grid.Row="2"
+                               Grid.ColumnSpan="6"
+                               MaxHeight="50"
+                               Margin="2"
+                               HorizontalAlignment="Stretch"
+                               Text=""
+                               TextWrapping="Wrap"
+                               TextChanged="TextBoxSearch_TextChanged"
+                               VerticalAlignment="Center"
+                               Watermark="JBH" />
+        <ListBox x:Name="ListBoxEntrepeneurs"
+                 Grid.Column="3"
+                 Grid.Row="3"
+                 Grid.ColumnSpan="6"
+                 Grid.RowSpan="6"
+                 Margin="2"
+                 HorizontalAlignment="Stretch"
+                 SelectionChanged="ListBoxEntrepeneurs_SelectionChanged"
+                 VerticalAlignment="Stretch" />
+        <Grid x:Name="StackPanelCountryWide"
+              Grid.Column="3"
+              Grid.Row="9"
+              HorizontalAlignment="Stretch"
+              Margin="0"
+              VerticalAlignment="Stretch">
+            <CheckBox x:Name="CheckBoxActive"
+                      Content="Aktiv"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      RenderTransformOrigin="1,0"
+                      Checked="CheckBoxActive_Checked"
+                      Unchecked="CheckBoxActive_Checked">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterX="-50"
+                                        CenterY="0"
+                                        ScaleX="1.3"
+                                        ScaleY="1.3" />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+        </Grid>
+        <Button x:Name="ButtonClose"
+                Background="#216C9E"
+                Content="X"
+                Click="ButtonClose_Click"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#faa1a0"
+                Grid.Column="9"
+                Grid.Row="0"
+                MaxHeight="35"
+                MaxWidth="35"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+        <Button x:Name="ButtonSave"
+                Background="#216C9E"
+                Click="ButtonSave_Click"
+                Content="GEM"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="#d3e084"
+                Grid.Column="7"
+                Grid.Row="9"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                MaxHeight="50"
+                Margin="1"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center" />
+    </Grid>
+
+</UserControl>

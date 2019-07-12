@@ -1,0 +1,526 @@
+﻿<UserControl x:Class="JudGui.UcSubEntrepeneursEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:JudGui"
+             mc:Ignorable="d"
+             d:DesignHeight="364.8"
+             d:DesignWidth="778.4">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="75*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="195*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="110*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="1"
+                Grid.ColumnSpan="8"
+                Grid.Row="2" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="1"
+                Grid.ColumnSpan="8"
+                Grid.Row="3" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="1"
+                Grid.ColumnSpan="8"
+                Grid.Row="4" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="1"
+                Grid.Row="5"
+                Grid.RowSpan="2" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="2"
+                Grid.Row="5"
+                Grid.RowSpan="2" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="2"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="4" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="4"
+                Grid.Row="5"
+                Grid.RowSpan="4" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="5"
+                Grid.Row="5"
+                Grid.RowSpan="4" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="6"
+                Grid.Row="5"
+                Grid.RowSpan="4" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="7"
+                Grid.Row="5"
+                Grid.RowSpan="3" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="8"
+                Grid.Row="5"
+                Grid.RowSpan="3" />
+        <Border BorderThickness="1"
+                BorderBrush="LightGray"
+                Grid.Column="7"
+                Grid.ColumnSpan="2"
+                Grid.Row="8" />
+
+        <Viewbox x:Name="LabelEditSubEntrepeneurs"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Grid.ColumnSpan="4"
+                 Margin="1"
+                 HorizontalAlignment="Left">
+            <TextBlock FontWeight="Bold">Rediger Underentrepenører</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelCaseId"
+                 Grid.Column="1"
+                 Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Sagsnummer*:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelEnterprise"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                 Grid.ColumnSpan="2"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Entreprise*:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelSubEntrepeneur"
+                 Grid.Column="1"
+                 Grid.Row="4"
+                 Grid.ColumnSpan="2"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Underentrepenører*:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelEnterpreneur"
+                 Grid.Column="1"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Entrepenør:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelContact"
+                 Grid.Column="2"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Kontakt:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelRequestSent"
+                 Grid.Column="2"
+                 Grid.Row="7"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Sendt:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelRequestReceived"
+                 Grid.Column="2"
+                 Grid.Row="8"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Modtaget:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelRequest"
+                 Grid.Column="3"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Forespørg.:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelIttLetter"
+                 Grid.Column="4"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Udbudsbr.:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelOffer"
+                 Grid.Column="5"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Tilbud:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelReservations"
+                 Grid.Column="6"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Forbehold:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelUphold"
+                 Grid.Column="7"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Vedstå:</TextBlock>
+        </Viewbox>
+        <Viewbox x:Name="LabelChosen"
+                 Grid.Column="8"
+                 Grid.Row="5"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Valgt:</TextBlock>
+        </Viewbox>
+
+
+
+
+        <ComboBox x:Name="ComboBoxCaseId"
+                  FontSize="12"
+                  Grid.Column="3"
+                  Grid.Row="2"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="ComboBoxCaseId_SelectionChanged"
+                  VerticalAlignment="Stretch"
+                  MaxHeight="50"
+                  Margin="2" />
+        <TextBox x:Name="TextBoxName"
+                 FontSize="12"
+                 Grid.Column="4"
+                 Grid.Row="2"
+                 Grid.ColumnSpan="5"
+                 MaxHeight="50"
+                 Margin="2"
+                 HorizontalAlignment="Stretch"
+                 IsEnabled="False"
+                 Text=""
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Stretch" />
+        <ComboBox x:Name="ComboBoxEnterprise"
+                  FontSize="24"
+                  Grid.Column="3"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="6"
+                  MaxHeight="50"
+                  Margin="2"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="ComboBoxEnterprise_SelectionChanged"
+                  VerticalAlignment="Stretch" />
+        <ListBox x:Name="ListBoxSubEntrepeneurs"
+                 Grid.Column="3"
+                 Grid.Row="4"
+                 Grid.ColumnSpan="6"
+                 Margin="2"
+                 HorizontalAlignment="Stretch"
+                 SelectionChanged="ListBoxSubEntrepeneurs_SelectionChanged"
+                 VerticalAlignment="Stretch" />
+        <TextBox x:Name="TextBoxEntrepeneur"
+                 FontSize="12"
+                 Grid.Column="1"
+                 Grid.Row="6"
+                 Grid.ColumnSpan="1"
+                 MaxHeight="50"
+                 Margin="2"
+                 HorizontalAlignment="Stretch"
+                 IsEnabled="False"
+                 Text=""
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Stretch" />
+        <ComboBox x:Name="ComboBoxContact"
+                  FontSize="12"
+                  Grid.Column="2"
+                  Grid.Row="6"
+                  Grid.ColumnSpan="1"
+                  MaxHeight="50"
+                  Margin="2"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="ComboBoxContact_SelectionChanged"
+                  VerticalAlignment="Stretch" />
+        <ComboBox x:Name="ComboBoxRequest"
+                  FontSize="12"
+                  Grid.Column="3"
+                  Grid.Row="6"
+                  Grid.ColumnSpan="1"
+                  MaxHeight="50"
+                  Margin="2"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="ComboBoxRequest_SelectionChanged"
+                  VerticalAlignment="Stretch" />
+        <Grid x:Name="StackPanelIttLetterSent"
+              Grid.Column="4"
+              Grid.Row="6"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonIttLetterSentYes"
+                         Checked="RadioButtonIttLetterSentYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center">
+            </RadioButton>
+            <RadioButton x:Name="RadioButtonIttLetterSentNo"
+                         Checked="RadioButtonIttLetterSentNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+            </RadioButton>
+        </Grid>
+        <Grid x:Name="StackPanelOfferReceived"
+              Grid.Column="5"
+              Grid.Row="6"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonOfferReceivedYes"
+                         Checked="RadioButtonOfferReceivedYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+            <RadioButton x:Name="RadioButtonOfferReceivedNo"
+                         Checked="RadioButtonOfferReceivedNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+            </RadioButton>
+        </Grid>
+        <Grid x:Name="StackPanelReservations"
+              Grid.Column="6"
+              Grid.Row="6"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonReservationsYes"
+                         Checked="RadioButtonReservationsYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center" />
+            <RadioButton x:Name="RadioButtonReservationsNo"
+                         Checked="RadioButtonReservationsNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+        </Grid>
+        <Grid x:Name="StackPanelUpholdSent"
+              Grid.Column="7"
+              Grid.Row="6"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonUpholdYes"
+                         Checked="RadioButtonUpholdYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+            <RadioButton x:Name="RadioButtonUpholdNo"
+                         Checked="RadioButtonUpholdNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+        </Grid>
+        <Grid x:Name="StackPanelOfferChosen"
+              Grid.Column="8"
+              Grid.Row="6"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonOfferChosenYes"
+                         Checked="RadioButtonOfferChosenYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center">
+            </RadioButton>
+            <RadioButton x:Name="RadioButtonOfferChosenNo"
+                         Checked="RadioButtonOfferChosenNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+            </RadioButton>
+        </Grid>
+        <DatePicker x:Name="DateRequestSent"
+                    FontSize="8"
+                    Grid.Column="3"
+                    Grid.Row="7"
+                    HorizontalAlignment="Left"
+                    MaxWidth="170"
+                    SelectedDateChanged="DateRequestSent_SelectedDateChanged"
+                    VerticalAlignment="Center">
+
+        </DatePicker>
+        <DatePicker x:Name="DateRequestReceived"
+                    FontSize="8"
+                    Grid.Column="3"
+                    Grid.Row="8"
+                    HorizontalAlignment="Left"
+                    MaxWidth="165"
+                    SelectedDateChanged="DateRequestReceived_SelectedDateChanged"
+                    VerticalAlignment="Center">
+        </DatePicker>
+        <DatePicker x:Name="DateIttLetter"
+                    FontSize="8"
+                    Grid.Column="4"
+                    Grid.Row="7"
+                    HorizontalAlignment="Left"
+                    MaxWidth="170"
+                    SelectedDateChanged="DateIttLetter_SelectedDateChanged"
+                    VerticalAlignment="Center">
+        </DatePicker>
+        <DatePicker x:Name="DateOffer"
+                    FontSize="8"
+                    Grid.Column="5"
+                    Grid.Row="7"
+                    HorizontalAlignment="Left"
+                    MaxWidth="170"
+                    SelectedDateChanged="DateOffer_SelectedDateChanged"
+                    VerticalAlignment="Center">
+        </DatePicker>
+
+        <Viewbox x:Name="LabelOfferPrice"
+                 Grid.Column="4"
+                 Grid.Row="8"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Pris:</TextBlock>
+        </Viewbox>
+
+        <TextBox x:Name="TextBoxOfferPrice"
+                 FontSize="12"
+                 Grid.Column="5"
+                 Grid.Row="8"
+                 MaxHeight="50"
+                 Margin="2"
+                 HorizontalAlignment="Stretch"
+                 Text="0,00"
+                 TextAlignment="Right"
+                 TextChanged="TextBoxOfferPrice_TextChanged"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Stretch" />
+
+        <Viewbox x:Name="LabelAgreementConcluded"
+                 Grid.Column="7"
+                 Grid.Row="8"
+                 Grid.ColumnSpan="1"
+                 Margin="1,5,1,5"
+                 HorizontalAlignment="Left">
+            <TextBlock>Aftalt :</TextBlock>
+        </Viewbox>
+
+        <Grid x:Name="StackPanelAgreementConcluded"
+              Grid.Column="8"
+              Grid.Row="8"
+              HorizontalAlignment="Stretch"
+              Margin="1"
+              VerticalAlignment="Stretch">
+            <RadioButton x:Name="RadioButtonAgreementConcludedYes"
+                         Checked="RadioButtonAgreementConcludedYes_Checked"
+                         Content="Ja"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+            <RadioButton x:Name="RadioButtonAgreementConcludedNo"
+                         Checked="RadioButtonAgreementConcludedNo_Checked"
+                         Content="Nej"
+                         FontSize="12"
+                         Margin="3"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Center">
+
+            </RadioButton>
+        </Grid>
+
+        <Button x:Name="ButtonClose"
+                Background="#216C9E"
+                Content="X"
+                Click="ButtonClose_Click"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="#faa1a0"
+                Grid.Column="9"
+                Grid.Row="1"
+                MaxHeight="35"
+                MaxWidth="35"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+        <Button x:Name="ButtonSave"
+                Background="#216C9E"
+                Click="ButtonSave_Click"
+                Content="GEM"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="#d3e084"
+                Grid.Column="7"
+                Grid.Row="9"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                MaxHeight="50"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+    </Grid>
+</UserControl>

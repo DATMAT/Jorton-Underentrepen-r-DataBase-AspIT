@@ -1,0 +1,370 @@
+﻿<!--Height="1050" Width="1940"-->
+<Window x:Class="JudGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:Custom="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" 
+        mc:Ignorable="d"
+        Title="Jorton Underentrepenør Database" 
+        
+        MaxHeight="1050" MaxWidth="1940"
+        Background="#1a89ab" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal" >
+        <Grid x:Name="MasterMainGrid"
+            HorizontalAlignment="Stretch"
+              Margin="0"
+              MaxHeight="1050" MaxWidth="1940"
+              VerticalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="37*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="145" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+        <Ribbon x:Name="RibbonWin"
+                    Grid.Column="0" Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                
+                HorizontalAlignment="Stretch"
+                    Margin="1"
+                    SelectedIndex="0">
+            
+            <!-- Help Pane, located at the right-hand side -->
+            <Ribbon.HelpPaneContent>
+                <RibbonSplitButton x:Name="ButtonThreeDotsMenu"
+                                       Click="ButtonAbout_Click"
+                                       SmallImageSource="images/three-dots.png">
+                    <RibbonButton x:Name="ButtonHelp"
+                                      Click="ButtonHelp_Click"
+                                      Label="Hjælp"
+                                      SmallImageSource="images/help.png" />
+                    <RibbonButton x:Name="ButtonOptions"
+                                      Click="ButtonOptions_Click"
+                                      Label="Indstillinger"
+                                      SmallImageSource="images/options.png" />
+                    <RibbonButton x:Name="ButtonAbout"
+                                      Click="ButtonAbout_Click"
+                                      Label="Om"
+                                      SmallImageSource="images/about.png" />
+                </RibbonSplitButton>
+            </Ribbon.HelpPaneContent>
+            <!-- Application Menu, located at the left-hand side (down arrow) -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu x:Name="ApplicationMenu" 
+                                           SmallImageSource="Images/ApplicationMenuIcon.png"
+                                           KeyTip="F" >
+                    <RibbonApplicationMenuItem x:Name="ButtonLogOut"
+                                                   Click="ButtonLogOut_Click"
+                                                   Header="Logout"
+                                                   ImageSource="images/logout.png" />
+                    <RibbonApplicationMenuItem x:Name="ButtonChangePassWord"
+                                                   Click="ButtonChangePassWord_Click"
+                                                   Header="Ændr Password"
+                                                   ImageSource="images/logout.png" />
+                    <RibbonApplicationMenuItem x:Name="ButtonQuit"
+                                                   Click="ButtonQuit_Click"
+                                                   Header="Afslut"
+                                                   ImageSource="images/quit.png" />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <!-- Ribbon Tab #1: Offer-->
+            <RibbonTab x:Name="TabOffer"
+                           Header="Tilbud"
+                           IsEnabled="True">
+                <!-- Project Group-->
+                <RibbonGroup x:Name="Project"
+                                 Header="Projekt">
+                    <RibbonButton x:Name="ButtonProjectCreate"
+                                          Click="ButtonProjectCreate_Click"
+                                          Label="Opret"
+                                          LargeImageSource="images/project-create.png" />
+                    <RibbonButton x:Name="ButtonProjectEdit"
+                                          Click="ButtonProjectEdit_Click"
+                                          Label="Rediger"
+                                          LargeImageSource="images/project-edit.png" />
+                    <RibbonButton x:Name="ButtonProjectElaborate"
+                                          Click="ButtonProjectElaborate_Click"
+                                          Label="Uddybning"
+                                          LargeImageSource="images/project-edit.png" />
+                    <RibbonButton x:Name="ButtonProjectStatusChange"
+                                          Click="ButtonProjectStatusChange_Click"
+                                          Label="Ændr Status"
+                                          LargeImageSource="images/project-status.png" />
+                    <RibbonButton x:Name="ButtonProjectChangeCaseId"
+                                          Click="ButtonProjectChangeCaseId_Click"
+                                          Label="Ændr Sagsnr."
+                                          LargeImageSource="images/project-CaseId.png" />
+                    <RibbonButton x:Name="ButtonProjectCopy"
+                                          Click="ButtonProjectCopy_Click"
+                                          Label="Kopier"
+                                          LargeImageSource="images/project-copy.png" />
+                    <RibbonButton x:Name="ButtonProjectDelete"
+                                          Click="ButtonProjectDelete_Click"
+                                          Label="Slet"
+                                          LargeImageSource="images/project-delete.png" />
+                </RibbonGroup>
+                <!-- Enterprises Group-->
+                <RibbonGroup x:Name="Enterprises"
+                                 Header="Entrepriser">
+                    <RibbonButton x:Name="ButtonEnterprisesCreate"
+                                          Click="ButtonEnterprisesCreate_Click"
+                                          Label="Opret"
+                                          LargeImageSource="images/enterprise-create.png" />
+                    <RibbonButton x:Name="ButtonEnterprisesEdit"
+                                          Click="ButtonEnterprisesEdit_Click"
+                                          Label="Rediger"
+                                          LargeImageSource="images/enterprise-edit.png" />
+                    <RibbonButton x:Name="ButtonEnterprisesView"
+                                          Click="ButtonEnterprisesView_Click"
+                                          Label="Vis"
+                                          LargeImageSource="images/enterprise-show.png" />
+                </RibbonGroup>
+                <!-- SubEntrepeneurs Group-->
+                <RibbonGroup x:Name="SubEntrepeneurs"
+                                 Header="Underentreprenører">
+                    <RibbonButton x:Name="ButtonSubEntrepeneursChoose"
+                                          Click="ButtonSubEntrepeneursChoose_Click"
+                                          Label="Udvælg"
+                                          LargeImageSource="images/subentrepeneur-create.png" />
+                    <RibbonButton x:Name="ButtonSubEntrepeneursEdit"
+                                          Click="ButtonSubEntrepeneursEdit_Click"
+                                          Label="Rediger"
+                                          LargeImageSource="images/subentrepeneur-edit.png" />
+                    <RibbonButton x:Name="ButtonSubEntrepeneursShow"
+                                          Click="ButtonSubEntrepeneursView_Click"
+                                          Label="Vis"
+                                          LargeImageSource="images/subentrepeneur-show.png" />
+                </RibbonGroup>
+                <!-- Requests Group-->
+                <RibbonGroup x:Name="Requests"
+                                 Header="Forespørgsler">
+                    <RibbonButton x:Name="ButtonRequestsSend"
+                                          Click="ButtonRequestsSend_Click"
+                                          Label="Send"
+                                          LargeImageSource="images/request.png" />
+                    <RibbonButton x:Name="ButtonRequestsShow"
+                                          Click="ButtonRequestsShow_Click"
+                                          Label="Vis"
+                                          LargeImageSource="images/request-show.png" />
+                </RibbonGroup>
+                <!-- IttLetters Group-->
+                <RibbonGroup x:Name="IttLetters"
+                                Header="Udbudsbreve">
+                    <RibbonButton x:Name="ButtonIttLettersSend"
+                                    Click="ButtonIttLettersSend_Click"
+                                    Label="Send"
+                                    LargeImageSource="images/ittletter.png" />
+                    <RibbonButton x:Name="ButtonIttLettersShow"
+                                    Click="ButtonIttLettersShow_Click"
+                                    Label="Vis"
+                                    LargeImageSource="images/request-show.png" />
+                </RibbonGroup>
+            </RibbonTab>
+
+            <!-- Ribbon Tab #2: Calculation-->
+            <RibbonTab x:Name="TabCalculation"
+                           Header="Beregninger"
+                           IsEnabled="False">
+                <!-- IttLists Group-->
+                <RibbonGroup x:Name="IttLists"
+                                 Header="Tilbudslister">
+                    <RibbonButton x:Name="ButtonIttList"
+                                      Click="ButtonIttList_Click"
+                                      IsEnabled="False"
+                                      Label="Tilbudsliste"
+                                      LargeImageSource="images/calculation.png" />
+                </RibbonGroup>
+                <!-- Estimate Group-->
+                <RibbonGroup x:Name="Estimate"
+                                 Header="Overslag">
+                    <RibbonButton x:Name="ButtonEstimate"
+                                      Click="ButtonEstimate_Click"
+                                      IsEnabled="False"
+                                      Label="Overslag"
+                                      LargeImageSource="images/estimate.png" />
+                </RibbonGroup>
+            </RibbonTab>
+
+            <!-- Ribbon Tab #3: Nyheder-->
+            <RibbonTab x:Name="TabNews"
+                           Header="Nyheder">
+                <RibbonGroup x:Name="News"
+                                 Header="Nyheder">
+                    <RibbonSplitButton x:Name="ButtonNews"
+                                           Click="ButtonJortonSubEntrepeneurDatabaseV10_Click"
+                                           LargeImageSource="images/news.png"
+                                           Label="Aktuelle nyheder">
+                        <RibbonButton x:Name="ButtonJortonSubEntrepeneurDatabaseV10"
+                                          Click="ButtonJortonSubEntrepeneurDatabaseV10_Click"
+                                          Label="JORTON Underentrepenørdatabase V. 1.0"
+                                          SmallImageSource="images/news-small.png" />
+                    </RibbonSplitButton>
+                    <RibbonSplitButton x:Name="ButtonOldNews"
+                                           Click="ButtonBicV117_Click"
+                                           LargeImageSource="images/news.png"
+                                           Label="Ældre nyheder">
+                        <RibbonButton x:Name="ButtonBicV117"
+                                          Click="ButtonBicV117_Click"
+                                          Label="BeInControl V. 1.1.7"
+                                          SmallImageSource="images/news-small.png" />
+                        <RibbonButton x:Name="ButtonBicV116"
+                                          Click="ButtonBicV116_Click"
+                                          Label="BeInControl V. 1.1.6"
+                                          SmallImageSource="images/news-small.png" />
+                        <RibbonButton x:Name="ButtonNewsV115"
+                                          Click="ButtonBicV115_Click"
+                                          Label="BeInControl V. 1.1.5"
+                                          SmallImageSource="images/news-small.png" />
+                    </RibbonSplitButton>
+                </RibbonGroup>
+            </RibbonTab>
+
+            <!-- Ribbon Tab #4: Maintenance -->
+            <RibbonTab x:Name="TabMaintenance"
+                           Header="Vedligehodelse">
+                <!-- Entrepeneurs Group-->
+                <RibbonGroup x:Name="Contacts"
+                                 Header="Kontakter">
+                    <RibbonButton x:Name="ButtonContactCreate"
+                                          Click="ButtonContactCreate_Click"
+                                          Label="Opret"
+                                          LargeImageSource="images/vcard.png" />
+                    <RibbonButton x:Name="ButtonContactsEdit"
+                                          Click="ButtonContactsEdit_Click"
+                                          Label="Rediger"
+                                          LargeImageSource="images/vcard.png" />
+                    <RibbonButton x:Name="ButtonContactsDelete"
+                                          Click="ButtonContactsDelete_Click"
+                                          Label="Slet"
+                                          LargeImageSource="images/vcard.png" />
+                </RibbonGroup>
+                <!-- Builders Group-->
+                <RibbonGroup x:Name="Builders"
+                             Header="Bygherrer">
+                    <RibbonButton x:Name="ButtonBuilderCreate"
+                                          Click="ButtonBuilderCreate_Click"
+                                          Label="Opret"
+                                          LargeImageSource="images/builder-add-small.png" />
+                    <RibbonButton x:Name="ButtonBuildersEdit"
+                                          Click="ButtonBuildersEdit_Click"
+                                          Label="Rediger"
+                                          LargeImageSource="images/builder-edit-small.png" />
+                    <RibbonButton x:Name="ButtonBuildersStatusChange"
+                                          Click="ButtonBuildersStatusChange_Click"
+                                          Label="Rediger Status"
+                                          LargeImageSource="images/builder-status-change-small.png" />
+                </RibbonGroup>
+                <!-- Entrepeneurs Group-->
+                <RibbonGroup x:Name="Entrepeneurs"
+                             Header="Entrepreneurs">
+                    <RibbonButton x:Name="ButtonEntrepeneurCreate"
+                                          Click="ButtonEntrepeneurCreate_Click"
+                                          Label="Opret Entrepenør"
+                                          LargeImageSource="images/entrepeneur-add-small.png" />
+                    <RibbonButton x:Name="ButtonEntrepeneurEdit"
+                                          Click="ButtonEntrepeneursEdit_Click"
+                                          Label="Rediger Entrepenører"
+                                          LargeImageSource="images/entrepeneur-edit-small.png" />
+                    <RibbonButton x:Name="ButtonEntrepeneurStatusChange"
+                                          Click="ButtonEntrepeneursStatusChange_Click"
+                                          Label="Rediger Status for Entrepenører"
+                                          LargeImageSource="images/entrepeneur-status-change-small.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <!-- Ribbon Tab #5: Administration -->
+            <RibbonTab x:Name="TabAdministration"
+                           Header="Administration">
+                <!-- User Group-->
+                <RibbonGroup x:Name="Users"
+                                 Header="Brugere" >
+                    <RibbonSplitButton x:Name="ButtonUsers"
+                                           Click="ButtonUserCreate_Click"
+                                           LargeImageSource="images/user.png"
+                                           Label="Brugere">
+                        <RibbonButton x:Name="ButtonUserCreate"
+                                          Click="ButtonUserCreate_Click"
+                                          Label="Opret Bruger"
+                                          LargeImageSource="images/user-add-small.png" />
+                        <RibbonButton x:Name="ButtonUserEdit"
+                                          Click="ButtonUsersEdit_Click"
+                                          Label="Rdiger Brugere"
+                                          LargeImageSource="images/user-edit-small.png" />
+                        <RibbonButton x:Name="ButtonUsersStatusChange"
+                                          Click="ButtonUsersStatusChange_Click"
+                                          Label="Rediger Status for Brugere"
+                                          LargeImageSource="images/user-delete-small.png" />
+                    </RibbonSplitButton>
+                </RibbonGroup>
+                <!-- Data Group-->
+                <RibbonGroup x:Name="Data"
+                                 Header="Data">
+                    <RibbonButton x:Name="ButtonCraftGroups"
+                                      Click="ButtonUcCraftGroups_Click"
+                                      Label="Faggrupper"
+                                      LargeImageSource="images/craftGroup.png" />
+                    <RibbonButton x:Name="ButtonCraftCategories"
+                                      Click="ButtonCraftCategories_Click"
+                                      Label="Fagkategorier"
+                                      LargeImageSource="images/category.png" />
+                    <RibbonButton x:Name="ButtonProjectStatuses"
+                                      Click="ButtonProjectStatuses_Click"
+                                      Label="Projekstatustatusliste"
+                                      LargeImageSource="images/status.png" />
+                    <RibbonButton x:Name="ButtonJobDescritions"
+                                      Click="ButtonJobDescritions_Click"
+                                      Label="Jobbeskrivelser"
+                                      LargeImageSource="images/job_description.png" />
+                    <RibbonButton x:Name="ButtonRegions"
+                                      Click="ButtonRegions_Click"
+                                      Label="Regioner"
+                                      LargeImageSource="images/region.png" />
+                    <RibbonButton x:Name="ButtonZipList"
+                                      Click="ButtonZipList_Click"
+                                      Label="Postnummerliste"
+                                      LargeImageSource="images/zip.png" />
+                    <RibbonButton x:Name="ButtonEnterpriseForms"
+                                      Click="ButtonEnterpriseForms_Click"
+                                      Label="Entrepriseformer"
+                                      LargeImageSource="images/enterprise-form.png" />
+                    <RibbonButton x:Name="ButtonTenderForms"
+                                      Click="ButtonTenderForms_Click"
+                                      Label="Udbudsformer"
+                                      LargeImageSource="images/tender_form.png" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <UserControl x:Name="UcMain"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     Margin="1">
+        </UserControl>
+        <StatusBar x:Name="statusBarBottom" 
+                       Grid.Column="0" Grid.Row="2"
+                       Grid.ColumnSpan="3" 
+                       HorizontalAlignment="Stretch" 
+                       Margin="1"
+                       VerticalAlignment="Stretch" 
+                   Grid.RowSpan="2">
+            <Label Name="User" 
+                   Margin="1"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Content="Bruger:"
+                   FontSize="10"
+                   />
+            <Label Name="UserName"
+                           Content="jhghghjgkhghgkhg"
+                   FontSize="10"
+                   Margin="1"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch" />
+        </StatusBar>
+    </Grid>
+</Window>
