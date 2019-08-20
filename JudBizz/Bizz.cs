@@ -62,7 +62,7 @@ namespace JudBizz
         public List<IndexedRequest> IndexedRequests = new List<IndexedRequest>();
         public List<IndexedRequestStatus> IndexedRequestStatuses = new List<IndexedRequestStatus>();
         public List<IndexedSubEntrepeneur> IndexedSubEntrepeneurs = new List<IndexedSubEntrepeneur>();
-        public List<IndexedTenderForm> IndexedTenderForms = new List<IndexedTenderForm>();
+        //public List<IndexedTenderForm> IndexedTenderForms = new List<IndexedTenderForm>();
         public List<IndexedUser> IndexedUsers = new List<IndexedUser>();
         public List<IndexedUserLevel> IndexedUserLevels = new List<IndexedUserLevel>();
         public List<IndexedZipTown> IndexedZipTowns = new List<IndexedZipTown>();
@@ -155,7 +155,7 @@ namespace JudBizz
             RefreshIndexedProjectStatuses();
             RefreshIndexedRegions();
             RefreshIndexedRequestStatuses();
-            RefreshIndexedTenderForms();
+            //RefreshIndexedTenderForms();
             RefreshIndexedZipTowns();
         }
 
@@ -378,7 +378,7 @@ namespace JudBizz
                     RefreshIndexedRequestStatuses();
                     break;
                 case "TenderForms":
-                    RefreshIndexedTenderForms();
+                    //RefreshIndexedTenderForms();
                     break;
                 case "Users":
                     RefreshIndexedUsers();
@@ -519,19 +519,19 @@ namespace JudBizz
         /// <summary>
         /// Method, that refreshes Indexed Tender Forms list
         /// </summary>
-        private void RefreshIndexedTenderForms()
-        {
-            RefreshList("TenderForms");
-            IndexedTenderForms.Clear();
+        //private void RefreshIndexedTenderForms()
+        //{
+        //    RefreshList("TenderForms");
+        //    IndexedTenderForms.Clear();
 
-            int i = 0;
+        //    int i = 0;
 
-            foreach (TenderForm status in TenderForms)
-            {
-                IndexedTenderForms.Add(new IndexedTenderForm(i, status));
-                i++;
-            }
-        }
+        //    foreach (TenderForm status in TenderForms)
+        //    {
+        //        IndexedTenderForms.Add(new IndexedTenderForm(i, status));
+        //        i++;
+        //    }
+        //}
 
         /// <summary>
         /// Method that refreshes a list of Indexed Users
@@ -631,6 +631,13 @@ namespace JudBizz
             greenIndicator.ImageSource = greenFrame;
             redIndicator.ImageSource = redFrame;
 
+        }
+
+        public List<TenderForm> LoadTenderForms()
+        {
+            List<TenderForm> tenderForms = new List<TenderForm>();
+
+            return tenderForms;
         }
 
         #region Zips

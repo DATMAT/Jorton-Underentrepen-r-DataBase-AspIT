@@ -40,7 +40,24 @@ namespace JudGui
         #endregion
 
         #region Buttons
-        
+
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            if (CBZ.UcMainEdited)
+            {
+                //Warning about lost changes before closing
+                if (MessageBox.Show("Vil du lukke Udbudsformer? Alle ugemte data mistes.", "Udbudsformen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    CBZ.CloseUcMain(UcMain);
+                }
+            }
+            else
+            {
+                CBZ.CloseUcMain(UcMain);
+            }
+
+        }
+
         #endregion
 
         #region Events
@@ -49,9 +66,9 @@ namespace JudGui
         #endregion
 
         #region Methods
-        private async Task LoadTenderFormsAsync()
+        private void LoadAllTenderForms()
         {
-
+            CBZ.TenderForms = CBZ.LoadTenderForms();
         }
 
         #endregion
