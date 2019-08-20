@@ -33,6 +33,8 @@ namespace JudGui
             InitializeComponent();
             this.CBZ = cbz;
             this.UcMain = ucMain;
+
+            // Get tender forms from db
         }
 
         #endregion
@@ -47,7 +49,10 @@ namespace JudGui
         #endregion
 
         #region Methods
-        
+        private async Task LoadTenderFormsAsync()
+        {
+
+        }
 
         #endregion
 

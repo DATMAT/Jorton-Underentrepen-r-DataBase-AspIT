@@ -97,7 +97,6 @@
                                MaxHeight="50"
                                HorizontalAlignment="Stretch"
                                Text=""
-                               TextChanged="TextBoxTenderFormSearch_TextChanged"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"
                                Watermark="Fagent" />
@@ -116,7 +115,6 @@
                  Grid.RowSpan="4"
                  Margin="1"
                  HorizontalAlignment="Stretch"
-                 SelectionChanged="ListBoxTenderForms_SelectionChanged"
                  VerticalAlignment="Stretch" />
         <xctk:WatermarkTextBox x:Name="TextBoxText"
                                FontSize="12"
@@ -125,7 +123,6 @@
                                MaxHeight="50"
                                HorizontalAlignment="Stretch"
                                Text=""
-                               TextChanged="TextBoxText_TextChanged"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"
                                Watermark="Fagentreprise" />
@@ -136,13 +133,11 @@
                                MaxHeight="50"
                                HorizontalAlignment="Stretch"
                                Text=""
-                               TextChanged="TextBoxNewText_TextChanged"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"
                                Watermark="Grundentreprise" />
         <Button x:Name="ButtonAddTenderForm"
                 Background="#216C9E"
-                Click="ButtonAddTenderForm_Click"
                 Content="TILFØJ"
                 FontSize="16"
                 FontWeight="Bold"
@@ -168,7 +163,6 @@
                 VerticalAlignment="Stretch" />
         <Button x:Name="ButtonSave"
                 Background="#216C9E"
-                Click="ButtonSave_Click"
                 Content="GEM"
                 FontSize="24"
                 FontWeight="Bold"
