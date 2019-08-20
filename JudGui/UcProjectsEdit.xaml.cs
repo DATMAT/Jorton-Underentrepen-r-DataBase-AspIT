@@ -37,7 +37,7 @@ namespace JudGui
             CBZ.RefreshIndexedList("Projects"); //Refreshes Indexed Projects list and all dependent lists
             ComboBoxCaseId.ItemsSource = CBZ.IndexedActiveProjects;
             ComboBoxBuilder.ItemsSource = CBZ.IndexedActiveBuilders;
-            ComboBoxTenderForm.ItemsSource = CBZ.IndexedTenderForms;
+            //ComboBoxTenderForm.ItemsSource = CBZ.IndexedTenderForms;
             ComboBoxEnterpriseForm.ItemsSource = CBZ.IndexedEnterpriseForms;
             ComboBoxExecutive.ItemsSource = CBZ.IndexedActiveUsers;
         }
@@ -115,7 +115,7 @@ namespace JudGui
 
                 TextBoxCaseName.Text = CBZ.TempProject.Details.Name;
                 ComboBoxBuilder.SelectedIndex = GetBuilderIndex();
-                ComboBoxTenderForm.SelectedIndex = GetTenderFormIndex();
+                //ComboBoxTenderForm.SelectedIndex = GetTenderFormIndex();
                 ComboBoxEnterpriseForm.SelectedIndex = GetEnterPriseFormIndex();
                 ComboBoxExecutive.SelectedIndex = GetExecutiveIndex();
                 TextBoxDescription.Text = CBZ.TempProject.Details.Description;
@@ -314,23 +314,23 @@ namespace JudGui
         /// Method, that retrieves the index of a Tender Form
         /// </summary>
         /// <returns>int</returns>
-        private int GetTenderFormIndex()
-        {
-            int result = 0;
+        //private int GetTenderFormIndex()
+        //{
+        //    int result = 0;
 
-            CBZ.RefreshIndexedList("TenderForms");
+        //    CBZ.RefreshIndexedList("TenderForms");
 
-            foreach (IndexedTenderForm form in CBZ.IndexedTenderForms)
-            {
-                if (form.Id == CBZ.TempProject.TenderForm.Id)
-                {
-                    result = form.Index;
-                    break;
-                }
-            }
+        //    foreach (IndexedTenderForm form in CBZ.IndexedTenderForms)
+        //    {
+        //        if (form.Id == CBZ.TempProject.TenderForm.Id)
+        //        {
+        //            result = form.Index;
+        //            break;
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         /// Method, that resets ComboBoxes - except ComboBoxCaseId - and TextBoces
