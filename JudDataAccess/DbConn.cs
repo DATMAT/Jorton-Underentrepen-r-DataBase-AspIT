@@ -296,39 +296,6 @@ namespace JudDataAccess
             }
         }
 
-        /// <summary>
-        /// Method, that returns a boolean result from Db.
-        /// </summary>
-        /// <param name="sqlQuery">string with SQL-query</param>
-        /// <returns>bool</returns>
-        protected bool DbReturnBool(string sqlQuery)
-        {
-            bool bolRes = false;
-            try
-            {
-                OpenDB();
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, myConnection))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        bolRes = Convert.ToBoolean(reader.GetValue(0).ToString());
-                    }
-                }
-
-            }
-            catch(SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                CloseDB();
-            }
-
-            return bolRes;
-        }
-
         #endregion
 
         #region Properties

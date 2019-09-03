@@ -35,6 +35,9 @@ namespace JudGui
             this.UcMain = ucMain;
 
             // Get tender forms from db
+            LoadAllTenderForms();
+
+            // Set datacontext to the list in BIZ
         }
 
         #endregion

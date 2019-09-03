@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace JudBizz
 {
-    public class MyEntityFrameWork
+    public class MyEntityFrameWork : DbConn
     {
         #region Fields
         //private static string strConnection = @"Data Source=CV-BB-5781\SQLEXPRESS2017;Initial Catalog=JortonSubEnt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -104,6 +104,8 @@ namespace JudBizz
         {
             appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             appPath = appPath.Remove(appPath.Count() - 11, 11);
+
+            StrConnectionString = StrConnection;
 
             RefreshAllLists();
         }
@@ -3732,19 +3734,14 @@ namespace JudBizz
         /// <summary>
         /// Method, that refreshes the TenderForms list
         /// </summary>
-        private void RefreshTenderforms()
+        public void RefreshTenderforms(string table)
         {
             if (TenderForms != null)
             {
                 TenderForms.Clear();
             }
 
-            List<object> tempList = ReadListFromDb("TenderForms");
-
-            foreach (object obj in tempList)
-            {
-                TenderForms.Add((TenderForm)obj);
-            }
+            DbReturnDataTable($"SELECT * FROM {table}");
         }
 
         /// <summary>

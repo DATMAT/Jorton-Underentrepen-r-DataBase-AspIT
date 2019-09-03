@@ -636,6 +636,7 @@ namespace JudBizz
         public List<TenderForm> LoadTenderForms()
         {
             List<TenderForm> tenderForms = new List<TenderForm>();
+            RefreshTenderforms();
 
             return tenderForms;
         }
