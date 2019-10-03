@@ -2,8 +2,10 @@
 using JudRepository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -2979,7 +2981,7 @@ namespace JudBizz
             RefreshReceivers(); //
             RefreshRegions(); //
             RefreshRequestStatuses(); //
-            RefreshTenderforms(); //
+            RefreshList("tenderforms", TenderForms); //
             RefreshUserLevels(); //
             RefreshZipTowns(); //
 
@@ -3732,16 +3734,47 @@ namespace JudBizz
         }
 
         /// <summary>
-        /// Method, that refreshes the TenderForms list
+        /// Refreshes specified list with all rows from specified table.
+        /// The Class must have the same structure as the DataRows.
         /// </summary>
-        public void RefreshTenderforms(string table)
+        public void RefreshList<T>(string table, List<T> list)
         {
-            if (TenderForms != null)
+            if (list != null)
             {
-                TenderForms.Clear();
+                list.Clear();
             }
 
-            DbReturnDataTable($"SELECT * FROM {table}");
+            DataTable dt = DbReturnDataTable($"SELECT * FROM {table}");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = GetItem<T>(row);
+                list.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Fills an instance of class with values from DataRow.
+        /// </summary>
+        /// <typeparam name="T">Type of list</typeparam>
+        /// <param name="dr">DataRow from DataTable where the List type is unspecified</param>
+        /// <returns>Instance of specified object with values from DataRow</returns>
+        private T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
         }
 
         /// <summary>
