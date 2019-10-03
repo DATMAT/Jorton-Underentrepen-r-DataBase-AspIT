@@ -277,6 +277,10 @@
       <Project>{a55a0c27-c72d-46e4-9476-9bada2f38ca4}</Project>
       <Name>JudBizz</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JudDataAccess\JudDataAccess.csproj">
+      <Project>{AA780E01-092B-442C-A9B7-82A3593BBF76}</Project>
+      <Name>JudDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JudRepository\JudRepository.csproj">
       <Project>{e1d9b59f-506b-428e-9a6c-52be7691df15}</Project>
       <Name>JudRepository</Name>

@@ -75,7 +75,7 @@ namespace JudBizz
         /// </summary>
         public Bizz()
         {
-            RefreshAllInitialIndexedLists();
+            //RefreshAllInitialIndexedLists();
             CvrApi = new CvrAPI(ZipTowns);
             UkZipApi = new UkZipApi.UkZipApi();
 
@@ -631,14 +631,6 @@ namespace JudBizz
             greenIndicator.ImageSource = greenFrame;
             redIndicator.ImageSource = redFrame;
 
-        }
-
-        public List<TenderForm> LoadTenderForms()
-        {
-            List<TenderForm> tenderForms = new List<TenderForm>();
-            RefreshTenderforms();
-
-            return tenderForms;
         }
 
         #region Zips

@@ -3388,7 +3388,7 @@ namespace JudBizz
         /// Refreshes specified list with all rows from specified table.
         /// The Class must have the same structure as the DataRows.
         /// </summary>
-        public void RefreshList<T>(string table, List<T> list)
+        public List<T> RefreshList<T>(string table, List<T> list)
         {
             if (list != null)
             {
@@ -3402,6 +3402,8 @@ namespace JudBizz
                 T item = GetItem<T>(row);
                 list.Add(item);
             }
+
+            return list;
         }
 
         /// <summary>

@@ -71,7 +71,7 @@ namespace JudGui
         #region Methods
         private void LoadAllTenderForms()
         {
-            CBZ.TenderForms = CBZ.LoadTenderForms();
+            CBZ.TenderForms = CBZ.RefreshList("TenderForms", CBZ.TenderForms);
         }
 
         #endregion
