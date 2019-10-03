@@ -3757,7 +3757,7 @@ namespace JudBizz
         /// Fills an instance of class with values from DataRow.
         /// </summary>
         /// <typeparam name="T">Type of list</typeparam>
-        /// <param name="dr">DataRow from DataTable where the List type is unspecified</param>
+        /// <param name="dr">DataRow from DataTable</param>
         /// <returns>Instance of specified object with values from DataRow</returns>
         private T GetItem<T>(DataRow dr)
         {
