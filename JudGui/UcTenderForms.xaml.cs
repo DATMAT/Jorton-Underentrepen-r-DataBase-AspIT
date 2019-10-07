@@ -25,6 +25,7 @@ namespace JudGui
         #region Fields
         public Bizz CBZ;
         public UserControl UcMain;
+        ListCollectionView lcv;
         #endregion
 
         #region Constructors
@@ -35,9 +36,12 @@ namespace JudGui
             this.UcMain = ucMain;
 
             // Get tender forms from db
-            LoadAllTenderForms();
+            CBZ.TenderForms = CBZ.RefreshList("TenderForms", CBZ.TenderForms);
 
-            // Set datacontext to the list in BIZ
+            // New ListViewCollection containing the items from the TenderForms list in Bizz.
+            lcv = new ListCollectionView(CBZ.TenderForms);
+            // Immediately sets the itemssource of the ListBox to the ListViewCollection.
+            ListBoxTenderForms.ItemsSource = lcv;
         }
 
         #endregion
@@ -64,17 +68,37 @@ namespace JudGui
         #endregion
 
         #region Events
+        /// <summary>
+        /// Filters the TenderForms in the ListBox to show only TenderForms with text containing
+        /// text the user has searched for in TextBoxTenderFormSearch.
+        /// </summary>
+        /// <param name="sender">ListBox</param>
+        /// <param name="e">TextChangedEventArgs</param>
+        private void TextBoxTenderFormSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // If nothing is typed into TextBoxTenderFormSearch, the filter is removed and
+            // all items are shown.
+            if (String.IsNullOrEmpty(TextBoxTenderFormSearch.Text))
+                lcv.Filter = null;
 
+            else
+                lcv.Filter = (t) =>
+                {
+                    TenderForm tf = t as TenderForm;
+                    if (tf.Text.Contains(TextBoxTenderFormSearch.Text))
+                        return true;
+                    return false;
+                };
+            // The ItemsSource is updated
+            ListBoxTenderForms.ItemsSource = lcv;
+        }
 
         #endregion
 
         #region Methods
-        private void LoadAllTenderForms()
-        {
-            CBZ.TenderForms = CBZ.RefreshList("TenderForms", CBZ.TenderForms);
-        }
 
         #endregion
+
 
     }
 }
