@@ -1224,7 +1224,7 @@ namespace JudBizz
                     break;
                 case "TenderFormList":
                     TenderForm tenderForm = new TenderForm((TenderForm)entity);
-                    result = "INSERT INTO [dbo].[TenderFormList]([Description]) VALUES('" + tenderForm + @"')";
+                    result = "INSERT INTO [dbo].[TenderFormList]([Description]) VALUES('" + tenderForm.Text + @"')";
                     break;
                 case "UserLevels":
                     UserLevel userLevel = new UserLevel((UserLevel)entity);
@@ -3388,6 +3388,10 @@ namespace JudBizz
         /// Refreshes specified list with all rows from specified table.
         /// The Class must have the same structure as the DataRows.
         /// </summary>
+        /// <typeparam name="T">Which type the List consists of</typeparam>
+        /// <param name="table">Which DB table to target</param>
+        /// <param name="list">The list to refresh</param>
+        /// <returns></returns>
         public List<T> RefreshList<T>(string table, List<T> list)
         {
             if (list != null)

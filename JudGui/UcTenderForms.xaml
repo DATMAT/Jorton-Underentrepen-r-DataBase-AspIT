@@ -147,7 +147,8 @@
                 MaxHeight="50"
                 Margin="1"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center"
+                Click="ButtonAddTenderForm_Click" />
         <Button x:Name="ButtonClose"
                 Background="#216C9E"
                 Content="X"

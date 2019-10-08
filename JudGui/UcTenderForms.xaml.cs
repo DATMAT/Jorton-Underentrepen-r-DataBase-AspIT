@@ -71,6 +71,7 @@ namespace JudGui
         /// <summary>
         /// Filters the TenderForms in the ListBox to show only TenderForms with text containing
         /// text the user has searched for in TextBoxTenderFormSearch.
+        /// Utilizes the ListCollectionView.Filter method.
         /// </summary>
         /// <param name="sender">ListBox</param>
         /// <param name="e">TextChangedEventArgs</param>
@@ -93,12 +94,16 @@ namespace JudGui
             ListBoxTenderForms.ItemsSource = lcv;
         }
 
+        private void ButtonAddTenderForm_Click(object sender, RoutedEventArgs e)
+        {
+            TenderForm tf = new TenderForm(TextBoxNewText.Text);
+        }
+
+
         #endregion
 
         #region Methods
 
         #endregion
-
-
     }
 }

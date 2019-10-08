@@ -515,24 +515,6 @@ namespace JudBizz
 
         }
 
-
-        /// <summary>
-        /// Method, that refreshes Indexed Tender Forms list
-        /// </summary>
-        //private void RefreshIndexedTenderForms()
-        //{
-        //    RefreshList("TenderForms");
-        //    IndexedTenderForms.Clear();
-
-        //    int i = 0;
-
-        //    foreach (TenderForm status in TenderForms)
-        //    {
-        //        IndexedTenderForms.Add(new IndexedTenderForm(i, status));
-        //        i++;
-        //    }
-        //}
-
         /// <summary>
         /// Method that refreshes a list of Indexed Users
         /// </summary>
