@@ -1105,14 +1105,14 @@ namespace JudBizz
         /// <summary>
         /// Method, that returns a SQL-query
         /// </summary>
-        /// <param name="list">string</param>
+        /// <param name="table">string</param>
         /// <param name="entity">object</param>
         /// <returns>string</returns>
-        private string GetSQLQueryInsert(string list, object entity)
+        private string GetSQLQueryInsert(string table, object entity)
         {
             string result = "";
 
-            switch (list)
+            switch (table)
             {
                 //INSERT INTO table_name (column1, column2, column3, ...) VALUES(value1, value2, value3, ...);
                 case "Addresses":
@@ -1222,9 +1222,9 @@ namespace JudBizz
                     //result = "INSERT INTO [dbo].[SubEntrepeneurs]([Entrepeneur], [Enterprise], [Contact], [Request], [IttLetter], [Offer], [Reservations], [Uphold], [AgreementConcluded], [Active]) VALUES(< Entrepeneur, int,>, < Enterprise, int,>, < Contact, int,>, < Request, int,>, < IttLetter, int,>, < Offer, int,>, < Reservations, bit,>, < Uphold, bit,>, < AgreementConcluded, bit,>, < Active, bit,>)"
                     result = "INSERT INTO [dbo].[SubEntrepeneurs]([Entrepeneur], [Enterprise], [Contact], [Request], [IttLetter], [Offer], [Reservations], [Uphold], [AgreementConcluded], [Active]) VALUES(" + subEntrepeneur.Entrepeneur.Id + @", " + subEntrepeneur.Enterprise.Id + @", " + subEntrepeneur.Contact.Id + @", " + subEntrepeneur.Request.Id + @", " + subEntrepeneur.IttLetter.Id + @", " + subEntrepeneur.Offer.Id + @", '" + subEntrepeneur.Reservations.ToString() + @"', '" + subEntrepeneur.Uphold.ToString() + @"', '" + subEntrepeneur.AgreementConcluded.ToString() + @"', '" + subEntrepeneur.Active.ToString() + @"')";
                     break;
-                case "TenderFormList":
+                case "Tenderforms":
                     TenderForm tenderForm = new TenderForm((TenderForm)entity);
-                    result = "INSERT INTO [dbo].[TenderFormList]([Description]) VALUES('" + tenderForm.Text + @"')";
+                    result = "INSERT INTO [dbo].[Tenderforms]([Description]) VALUES('" + tenderForm.Text + @"')";
                     break;
                 case "UserLevels":
                     UserLevel userLevel = new UserLevel((UserLevel)entity);
@@ -2731,7 +2731,7 @@ namespace JudBizz
             RefreshReceivers(); //
             RefreshRegions(); //
             RefreshRequestStatuses(); //
-            RefreshList("tenderforms", TenderForms); //
+            RefreshList("Tenderforms", TenderForms); //
             RefreshUserLevels(); //
             RefreshZipTowns(); //
 
@@ -3392,47 +3392,7 @@ namespace JudBizz
         /// <param name="table">Which DB table to target</param>
         /// <param name="list">The list to refresh</param>
         /// <returns></returns>
-        public List<T> RefreshList<T>(string table, List<T> list)
-        {
-            if (list != null)
-            {
-                list.Clear();
-            }
-
-            DataTable dt = DbReturnDataTable($"SELECT * FROM {table}");
-
-            foreach (DataRow row in dt.Rows)
-            {
-                T item = GetItem<T>(row);
-                list.Add(item);
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Fills an instance of class with values from DataRow.
-        /// </summary>
-        /// <typeparam name="T">Type of list</typeparam>
-        /// <param name="dr">DataRow from DataTable</param>
-        /// <returns>Instance of specified object with values from DataRow</returns>
-        private T GetItem<T>(DataRow dr)
-        {
-            Type temp = typeof(T);
-            T obj = Activator.CreateInstance<T>();
-
-            foreach (DataColumn column in dr.Table.Columns)
-            {
-                foreach (PropertyInfo pro in temp.GetProperties())
-                {
-                    if (pro.Name == column.ColumnName)
-                        pro.SetValue(obj, dr[column.ColumnName], null);
-                    else
-                        continue;
-                }
-            }
-            return obj;
-        }
+        
 
         /// <summary>
         /// Method, that refreshes the User Level list
@@ -3514,6 +3474,59 @@ namespace JudBizz
             {
                 ZipTowns.Add((ZipTown)obj);
             }
+        }
+
+
+
+
+
+
+
+        public List<T> RefreshList<T>(string table, List<T> list)
+        {
+            if (list != null)
+            {
+                list.Clear();
+            }
+
+            DataTable dt = DbReturnDataTable($"SELECT * FROM {table}");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = GetItem<T>(row);
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public void InsertIntoTable<T>(string table, T entity)
+        {
+
+        }
+
+        /// <summary>
+        /// Fills an instance of class with values from DataRow.
+        /// </summary>
+        /// <typeparam name="T">Type of list</typeparam>
+        /// <param name="dr">DataRow from DataTable</param>
+        /// <returns>Instance of specified object with values from DataRow</returns>
+        private T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
         }
 
         #endregion

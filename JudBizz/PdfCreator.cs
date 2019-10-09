@@ -949,7 +949,7 @@ namespace JudBizz
         /// </summary>
         private void RefreshProjectShippings()
         {
-            CBZ.RefreshList("Shippings");
+            CBZ.Shippings = CBZ.RefreshList("Shippings", CBZ.Shippings);
             ProjectShippings.Clear();
 
             foreach (Shipping shipping in CBZ.Shippings)

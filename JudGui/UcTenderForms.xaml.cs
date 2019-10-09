@@ -36,7 +36,7 @@ namespace JudGui
             this.UcMain = ucMain;
 
             // Get tender forms from db
-            CBZ.TenderForms = CBZ.RefreshList("TenderForms", CBZ.TenderForms);
+            CBZ.TenderForms = CBZ.RefreshList("Tenderforms", CBZ.TenderForms);
 
             // New ListViewCollection containing the items from the TenderForms list in Bizz.
             lcv = new ListCollectionView(CBZ.TenderForms);
@@ -86,7 +86,7 @@ namespace JudGui
                 lcv.Filter = (t) =>
                 {
                     TenderForm tf = t as TenderForm;
-                    if (tf.Text.Contains(TextBoxTenderFormSearch.Text))
+                    if (tf.Text.ToLower().Contains(TextBoxTenderFormSearch.Text.ToLower()))
                         return true;
                     return false;
                 };
