@@ -3385,16 +3385,6 @@ namespace JudBizz
         }
 
         /// <summary>
-        /// Refreshes specified list with all rows from specified table.
-        /// The Class must have the same structure as the DataRows.
-        /// </summary>
-        /// <typeparam name="T">Which type the List consists of</typeparam>
-        /// <param name="table">Which DB table to target</param>
-        /// <param name="list">The list to refresh</param>
-        /// <returns></returns>
-        
-
-        /// <summary>
         /// Method, that refreshes the User Level list
         /// </summary>
         private void RefreshUserLevels()
@@ -3481,7 +3471,14 @@ namespace JudBizz
 
 
 
-
+        /// <summary>
+        /// Refreshes specified list with all rows from specified table.
+        /// The Class must have the same structure as the DataRows.
+        /// </summary>
+        /// <typeparam name="T">Which type the List consists of</typeparam>
+        /// <param name="table">Which DB table to target</param>
+        /// <param name="list">The list to refresh</param>
+        /// <returns>List with updated instances</returns>
         public List<T> RefreshList<T>(string table, List<T> list)
         {
             if (list != null)
@@ -3498,11 +3495,6 @@ namespace JudBizz
             }
 
             return list;
-        }
-
-        public void InsertIntoTable<T>(string table, T entity)
-        {
-
         }
 
         /// <summary>
