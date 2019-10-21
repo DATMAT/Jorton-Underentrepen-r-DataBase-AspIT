@@ -111,7 +111,7 @@ namespace JudBizz
             StrConnectionString = StrConnection;
 
             //RefreshAllLists();
-            RepoTypes = GetTypesFromAssembly("REPO");
+            RepoTypes = GetTypesFromAssembly("JudRepository");
         }
 
         #endregion
@@ -1225,8 +1225,8 @@ namespace JudBizz
                     result = "INSERT INTO [dbo].[SubEntrepeneurs]([Entrepeneur], [Enterprise], [Contact], [Request], [IttLetter], [Offer], [Reservations], [Uphold], [AgreementConcluded], [Active]) VALUES(" + subEntrepeneur.Entrepeneur.Id + @", " + subEntrepeneur.Enterprise.Id + @", " + subEntrepeneur.Contact.Id + @", " + subEntrepeneur.Request.Id + @", " + subEntrepeneur.IttLetter.Id + @", " + subEntrepeneur.Offer.Id + @", '" + subEntrepeneur.Reservations.ToString() + @"', '" + subEntrepeneur.Uphold.ToString() + @"', '" + subEntrepeneur.AgreementConcluded.ToString() + @"', '" + subEntrepeneur.Active.ToString() + @"')";
                     break;
                 case "Tenderforms":
-                    TenderForm tenderForm = new TenderForm((TenderForm)entity);
-                    result = "INSERT INTO [dbo].[Tenderforms]([Description]) VALUES('" + tenderForm.Text + @"')";
+                    TenderForm tenderform = (TenderForm)entity;
+                    result = $"EXEC {table}Create '{tenderform.Text}'";
                     break;
                 case "UserLevels":
                     UserLevel userLevel = new UserLevel((UserLevel)entity);
