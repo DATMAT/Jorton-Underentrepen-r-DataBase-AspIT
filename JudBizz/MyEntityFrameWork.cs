@@ -25,6 +25,7 @@ namespace JudBizz
         public DateTime oldDate = Convert.ToDateTime("1932-03-17");
 
 
+
         public User CurrentUser = new User();
         public Address TempAddress = new Address();
         public Builder TempBuilder = new Builder();
@@ -54,7 +55,6 @@ namespace JudBizz
         public TenderForm TempTenderForm = new TenderForm();
         public User TempUser = new User();
         public ZipTown TempZipTown = new ZipTown();
-
 
 
         #region Lists
@@ -96,6 +96,7 @@ namespace JudBizz
         public List<UserLevel> UserLevels = new List<UserLevel>();
         public List<User> Users = new List<User>();
         public List<ZipTown> ZipTowns = new List<ZipTown>();
+        public List<Type> RepoTypes { get; private set; }
 
         #endregion
 
@@ -109,7 +110,8 @@ namespace JudBizz
 
             StrConnectionString = StrConnection;
 
-            RefreshAllLists();
+            //RefreshAllLists();
+            RepoTypes = GetTypesFromAssembly("REPO");
         }
 
         #endregion
@@ -3498,9 +3500,9 @@ namespace JudBizz
         }
 
         /// <summary>
-        /// Fills an instance of class with values from DataRow.
+        /// Fills an instance of Class with values from DataRow.
         /// </summary>
-        /// <typeparam name="T">Type of list</typeparam>
+        /// <typeparam name="T">Type of instance</typeparam>
         /// <param name="dr">DataRow from DataTable</param>
         /// <returns>Instance of specified object with values from DataRow</returns>
         private T GetItem<T>(DataRow dr)
@@ -3512,13 +3514,73 @@ namespace JudBizz
             {
                 foreach (PropertyInfo pro in temp.GetProperties())
                 {
-                    if (pro.Name == column.ColumnName)
+                    // If the property is a Class from REPO assembly, an instance of the
+                    // property type will be created and its properties filled with values
+                    // from row containing the correct Id.
+                    if (pro.Name == column.ColumnName && RepoTypes.Contains(pro.PropertyType))
+                    {
+                        DataTable dt = DbReturnDataTable($"EXEC GetRelatedRow @table = {pro.PropertyType.Name}, @id = {dr[column.ColumnName]}");
+                        Type f = pro.GetType();
+                        var relatedObject = Activator.CreateInstance(pro.PropertyType);
+                        relatedObject = GetItem(dt.Rows[0], relatedObject);
+                        pro.SetValue(obj, relatedObject, null);
+                    }
+                    else if (pro.Name == column.ColumnName)
                         pro.SetValue(obj, dr[column.ColumnName], null);
                     else
                         continue;
                 }
             }
             return obj;
+        }
+
+        /// <summary>
+        /// Fills an instance of Class with values from DataRow.
+        /// </summary>
+        /// <typeparam name="T">Type of instance</typeparam>
+        /// <param name="dr">DataRow from DataTable</param>
+        /// <param name="obj">Instance to fill with values</param>
+        /// <returns>Parameter "obj" with properties containing values</returns>
+        private T GetItem<T>(DataRow dr, T obj)
+        {
+            Type temp = obj.GetType();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName && RepoTypes.Contains(pro.PropertyType))
+                    {
+                        DataTable dt = DbReturnDataTable($"EXEC GetRelatedRow @table = {pro.PropertyType.Name}, @id = {dr[column.ColumnName]}");
+                        var relatedObject = Activator.CreateInstance(pro.PropertyType);
+                        relatedObject = GetItem(dt.Rows[0], relatedObject);
+                        pro.SetValue(obj, relatedObject, null);
+                    }
+                    else if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// Gets types from an assembly.
+        /// </summary>
+        /// <param name="assembly">Name of Assembly/Project</param>
+        /// <returns>List of Types from Assembly</returns>
+        private List<Type> GetTypesFromAssembly(string assembly)
+        {
+            List<Type> list = new List<Type>();
+
+            var q = from t in Assembly.LoadFrom($"{assembly}.dll").GetTypes()
+                    where t.IsClass
+                    select t;
+
+            list = q.ToList();
+
+            return list;
         }
 
         #endregion
