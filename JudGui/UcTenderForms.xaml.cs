@@ -36,10 +36,10 @@ namespace JudGui
             this.UcMain = ucMain;
 
             // Get tender forms from db
-            CBZ.TenderForms = CBZ.RefreshList("Tenderforms", CBZ.TenderForms);
+            CBZ.Repos.TenderForms = CBZ.RefreshList("Tenderforms", CBZ.Repos.TenderForms);
 
             // New ListViewCollection containing the items from the TenderForms list in Bizz.
-            lcv = new ListCollectionView(CBZ.TenderForms);
+            lcv = new ListCollectionView(CBZ.Repos.TenderForms);
             // Immediately sets the itemssource of the ListBox to the ListViewCollection.
             ListBoxTenderForms.ItemsSource = lcv;
         }

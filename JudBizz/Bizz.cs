@@ -31,6 +31,11 @@ namespace JudBizz
         private bool validZip = false;
         private int intZip = 0;
         private string tempZip = "";
+        private RepoLists repos;
+
+        
+
+
         public ImageBrush button = new ImageBrush();
         public ImageBrush smallButton = new ImageBrush();
         public ImageBrush broadButton = new ImageBrush();
@@ -66,6 +71,11 @@ namespace JudBizz
         public List<IndexedUser> IndexedUsers = new List<IndexedUser>();
         public List<IndexedUserLevel> IndexedUserLevels = new List<IndexedUserLevel>();
         public List<IndexedZipTown> IndexedZipTowns = new List<IndexedZipTown>();
+        public RepoLists Repos
+        {
+            get { return repos; }
+            set { repos = value; }
+        }
 
         #endregion
 
@@ -78,6 +88,7 @@ namespace JudBizz
             //RefreshAllInitialIndexedLists();
             CvrApi = new CvrAPI(ZipTowns);
             UkZipApi = new UkZipApi.UkZipApi();
+            Repos = new RepoLists();
 
             SetIndicators();
         }
@@ -581,6 +592,7 @@ namespace JudBizz
                 i++;
             }
         }
+
 
         #endregion
 
