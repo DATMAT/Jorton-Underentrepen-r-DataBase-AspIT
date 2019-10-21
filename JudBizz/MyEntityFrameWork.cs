@@ -14,7 +14,7 @@ namespace JudBizz
     {
         #region Fields
         //private static string strConnection = @"Data Source=CV-BB-5781\SQLEXPRESS2017;Initial Catalog=JortonSubEnt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //private static string strConnection = @"Data Source=(localdb)MSSQLLocalDB;Initial Catalog=JortonSubEnt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //private static string strConnection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=JortonSubEnt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private static string strConnection = @"Data Source=10.205.48.42,49172;Initial Catalog=JortonSubEnt;User Id=AspIT;Password=Server2012;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public ProjectLists ProjectLists = new ProjectLists();
         private Executor executor = new Executor(strConnection);
