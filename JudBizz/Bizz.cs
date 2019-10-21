@@ -37,7 +37,6 @@ namespace JudBizz
         public ImageBrush greenIndicator = new ImageBrush();
         public ImageBrush redIndicator = new ImageBrush();
 
-
         public List<IndexedBuilder> IndexedActiveBuilders = new List<IndexedBuilder>();
         public List<IndexedEntrepeneur> IndexedActiveEntrepeneurs = new List<IndexedEntrepeneur>();
         public List<IndexedProject> IndexedActiveProjects = new List<IndexedProject>();

@@ -275,14 +275,15 @@ namespace JudDataAccess
         /// Method, that sends an SQL-query to Db.
         /// </summary>
         /// <param name="sqlQuery">string with SQL-query</param>
-        protected void FunctionExecuteNonQuery(string sqlQuery)
+        protected int FunctionExecuteNonQuery(string sqlQuery)
         {
+            int result = 0;
             try
             {
                 OpenDB();
                 using (SqlCommand cmd = new SqlCommand(sqlQuery, myConnection))
                 {
-                    cmd.ExecuteNonQuery();
+                    result = cmd.ExecuteNonQuery();
                 }
             }
             catch(SqlException ex)
@@ -294,6 +295,8 @@ namespace JudDataAccess
             {
                 CloseDB();
             }
+
+            return result;
         }
 
         #endregion

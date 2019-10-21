@@ -613,59 +613,59 @@ namespace JudBizz
         /// </summary>
         /// <param name="entity">Object</param>
         /// <returns>int</returns>
-        public int CreateInDb(object entity)
+        public int CreateInDb(string table, object entity)
         {
             int result = 0;
             int count = 0;
-            string entityTypeDk = "";
-            bool dbAnswer = false;
             string entityType = entity.GetType().ToString().Remove(0, 14);
             string list = GetListNameFromentityType(entityType);
 
-            switch (list)
-            {
-                case "Bullets":
-                    dbAnswer = CreateBullet(entity);
-                    break;
-                case "Builders":
-                    dbAnswer = CreateBuilder(entity);
-                    break;
-                case "Contacts":
-                    dbAnswer = CreateContact(entity);
-                    break;
-                case "Enterprises":
-                    dbAnswer = CreateEnterprise(entity);
-                    break;
-                case "Entrepeneurs":
-                    dbAnswer = CreateEntrepeneur(entity);
-                    break;
-                case "LegalEntities":
-                    dbAnswer = CreateLegalEntity(entity);
-                    break;
-                case "Paragrafs":
-                    dbAnswer = CreateParagraf(entity);
-                    break;
-                case "Persons":
-                    dbAnswer = CreatePerson(entity);
-                    break;
-                case "Projects":
-                    dbAnswer = CreateProject(entity);
-                    break;
-                case "Shippings":
-                    dbAnswer = CreateShipping(entity);
-                    break;
-                case "SubEntrepeneurs":
-                    dbAnswer = CreateSubEntrepeneur(entity);
-                    break;
-                case "Users":
-                    dbAnswer = CreateUser(entity);
-                    break;
-                default:
-                    dbAnswer = ProcesSqlQuery(GetSQLQueryInsert(list, entity));
-                    break;
-            }
+            int dbAnswer = FunctionExecuteNonQuery(GetSQLQueryInsert(table, entity));
 
-            entityTypeDk = GetDanishentityType(entityType);
+            //switch (list)
+            //{
+            //    case "Bullets":
+            //        dbAnswer = CreateBullet(entity);
+            //        break;
+            //    case "Builders":
+            //        dbAnswer = CreateBuilder(entity);
+            //        break;
+            //    case "Contacts":
+            //        dbAnswer = CreateContact(entity);
+            //        break;
+            //    case "Enterprises":
+            //        dbAnswer = CreateEnterprise(entity);
+            //        break;
+            //    case "Entrepeneurs":
+            //        dbAnswer = CreateEntrepeneur(entity);
+            //        break;
+            //    case "LegalEntities":
+            //        dbAnswer = CreateLegalEntity(entity);
+            //        break;
+            //    case "Paragrafs":
+            //        dbAnswer = CreateParagraf(entity);
+            //        break;
+            //    case "Persons":
+            //        dbAnswer = CreatePerson(entity);
+            //        break;
+            //    case "Projects":
+            //        dbAnswer = CreateProject(entity);
+            //        break;
+            //    case "Shippings":
+            //        dbAnswer = CreateShipping(entity);
+            //        break;
+            //    case "SubEntrepeneurs":
+            //        dbAnswer = CreateSubEntrepeneur(entity);
+            //        break;
+            //    case "Users":
+            //        dbAnswer = CreateUser(entity);
+            //        break;
+            //    default:
+            //dbAnswer = ProcesSqlQuery(GetSQLQueryInsert(list, entity));
+            //        break;
+            //}
+
+            string entityTypeDk = GetDanishentityType(entityType);
 
             if (!dbAnswer)
             {
@@ -674,6 +674,8 @@ namespace JudBizz
 
             return result;
         }
+
+
 
         /// <summary>
         /// Method, that creates a Contact

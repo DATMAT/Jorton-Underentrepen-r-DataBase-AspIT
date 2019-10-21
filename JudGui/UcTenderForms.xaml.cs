@@ -97,6 +97,7 @@ namespace JudGui
         private void ButtonAddTenderForm_Click(object sender, RoutedEventArgs e)
         {
             TenderForm tf = new TenderForm(TextBoxNewText.Text);
+            CBZ.CreateInDb("Tenderforms", tf);
         }
 
 
