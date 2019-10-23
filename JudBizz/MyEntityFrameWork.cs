@@ -667,7 +667,7 @@ namespace JudBizz
 
             string entityTypeDk = GetDanishentityType(entityType);
 
-            if (!dbAnswer)
+            if (dbAnswer < 1)
             {
                 MessageBox.Show("Databasen returnerede en fejl ved forsøg på at oprette ny " + entityTypeDk + ".", "Database", MessageBoxButton.OK, MessageBoxImage.Error);
             }
