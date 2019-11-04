@@ -17,7 +17,7 @@ using UkZipApi;
 
 namespace JudBizz
 {
-    public class Bizz : MyEntityFrameWork
+    public class Bizz
     {
         #region Fields
 
