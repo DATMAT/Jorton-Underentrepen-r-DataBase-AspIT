@@ -1,5 +1,4 @@
-﻿using JudDataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,16 +49,6 @@ namespace JudRepository
         /// </summary>
         /// <param name="status">ProjectStatus</param>
         public ProjectStatus(ProjectStatus status)
-        {
-            this.id = status.Id;
-            this.text = status.Text;
-        }
-
-        /// <summary>
-        /// Constructor, that accepts data from an existing Indexed Project Status
-        /// </summary>
-        /// <param name="status">IndexedProjectStatus</param>
-        public ProjectStatus(IndexedProjectStatus status)
         {
             this.id = status.Id;
             this.text = status.Text;
