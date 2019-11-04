@@ -48,7 +48,7 @@ namespace JudBizz
         public Bizz()
         {
             //RefreshAllInitialIndexedLists();
-            CvrApi = new CvrAPI(ZipTowns);
+            CvrApi = new CvrAPI(MEF.ZipTowns);
             UkZipApi = new UkZipApi.UkZipApi();
 
             SetIndicators();
@@ -84,14 +84,14 @@ namespace JudBizz
         public bool CheckCredentials(Label userName, RibbonApplicationMenuItem menuItemChangePassWord, RibbonApplicationMenuItem menuItemLogOut, string initials, string passWord)
         {
             bool result = false;
-            RefreshList("Users");
-            if (CheckLogin(initials, passWord))
+            MEF.RefreshList("Users");
+            if (MEF.CheckLogin(initials, passWord))
             {
-                foreach (User user in Users)
+                foreach (User user in MEF.Users)
                 {
                     if (user.Initials == initials && user.UserLevel.Id >= 1)
                     {
-                        CurrentUser = user;
+                        MEF.CurrentUser = user;
                         userName.Content = user.Person.Name;
                         menuItemChangePassWord.IsEnabled = true;
                         menuItemLogOut.IsEnabled = true;
@@ -112,449 +112,6 @@ namespace JudBizz
             UcMainEdited = false;
             ucMain.Content = new UserControl();
         }
-
-        #region Refresh Indexed Lists
-        /// <summary>
-        /// Method, that refreshes all Indexed lists
-        /// </summary>
-        public void RefreshAllInitialIndexedLists()
-        {
-            RefreshIndexedProjects();
-            RefreshIndexedCategories();
-            RefreshIndexedCraftGroups();
-            RefreshIndexedProjects();
-            RefreshIndexedEnterpriseForms();
-            RefreshIndexedProjectStatuses();
-            RefreshIndexedRegions();
-            RefreshIndexedRequestStatuses();
-            //RefreshIndexedTenderForms();
-            RefreshIndexedZipTowns();
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed  Builders list
-        /// </summary>
-        private void RefreshIndexedBuilders()
-        {
-            RefreshList("Builders");
-            IndexedBuilders.Clear();
-
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            foreach (Builder builder in Builders)
-            {
-                IndexedBuilders.Add(new IndexedBuilder(i, builder));
-                i++;
-
-                if (builder.Active)
-                {
-                    IndexedActiveBuilders.Add(new IndexedBuilder(j, builder));
-                    j++;
-                }
-                else
-                {
-                    IndexedInactiveBuilders.Add(new IndexedBuilder(k, builder));
-                    k++;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Categories
-        /// </summary>
-        private void RefreshIndexedCategories()
-        {
-            IndexedCategories.Clear();
-            RefreshList("Categories");
-
-            int i = 0;
-
-            foreach (Category contact in Categories)
-            {
-                IndexedCategories.Add(new IndexedCategory(i, contact));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// <summary>
-        /// Method that refreshes a list of Indexed Contacts
-        /// </summary>
-        private void RefreshIndexedContacts()
-        {
-            RefreshList("Contacts");
-            RefreshIndexedEntrepeneurs();
-            IndexedContacts.Clear();
-
-            int i = 0;
-
-            foreach (Contact contact in Contacts)
-            {
-                IndexedContacts.Add(new IndexedContact(i, contact));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed CraftGroups
-        /// </summary>
-        private void RefreshIndexedCraftGroups()
-        {
-            RefreshList("CraftGroups");
-            RefreshIndexedCategories();
-            IndexedCraftGroups.Clear();
-
-            int i = 0;
-
-            foreach (CraftGroup craftGroup in CraftGroups)
-            {
-                IndexedCraftGroups.Add(new IndexedCraftGroup(i, craftGroup));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed Enterprise Forms list
-        /// </summary>
-        private void RefreshIndexedEnterpriseForms()
-        {
-            RefreshList("EnterpriseForms");
-            IndexedEnterpriseForms.Clear();
-
-            int i = 0;
-
-            foreach (EnterpriseForm form in EnterpriseForms)
-            {
-                IndexedEnterpriseForms.Add(new IndexedEnterpriseForm(i, form));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed Enterprises list
-        /// </summary>
-        private void RefreshIndexedEnterprises()
-        {
-            RefreshList("Enterprises");
-            RefreshIndexedCraftGroups();
-            RefreshIndexedProjects();
-            IndexedEnterprises.Clear();
-
-            int i = 0;
-
-            foreach (Enterprise enterprise in Enterprises)
-            {
-                IndexedEnterprises.Add(new IndexedEnterprise(i, enterprise));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Entrepeneurs
-        /// </summary>
-        /// <returns>List<IndexedEntrepeneur></returns>
-        private void RefreshIndexedEntrepeneurs()
-        {
-            RefreshList("Entrepeneurs");
-            RefreshIndexedCraftGroups();
-
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            IndexedEntrepeneurs.Clear();
-
-            foreach (Entrepeneur entrepeneur in Entrepeneurs)
-            {
-                IndexedEntrepeneurs.Add(new IndexedEntrepeneur(i, entrepeneur));
-                i++;
-
-                if (entrepeneur.Active)
-                {
-                    IndexedActiveEntrepeneurs.Add(new IndexedEntrepeneur(j, entrepeneur));
-                    j++;
-                }
-                else
-                {
-                    IndexedInactiveEntrepeneurs.Add(new IndexedEntrepeneur(k, entrepeneur));
-                    k++;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Entrepeneurs
-        /// </summary>
-        /// <returns>List<IndexedEntrepeneur></returns>
-        private void RefreshIndexedSubEntrepeneursFromProjectSubEntrepeneurs()
-        {
-            RefreshProjectList("SubEntrepeneurs", TempProject.Id);
-            IndexedSubEntrepeneurs.Clear();
-
-            int i = 0;
-
-            //Fill Indexed Active Entrepeneur list
-            foreach (SubEntrepeneur subEntrepeneur in ProjectLists.SubEntrepeneurs)
-            {
-                IndexedSubEntrepeneurs.Add(new IndexedSubEntrepeneur(i, subEntrepeneur));
-                i++;
-            }
-
-        }
-
-        /// <summary>
-        /// Method, that refreshes an Indexed list
-        /// </summary>
-        public void RefreshIndexedList(string list)
-        {
-            switch (list)
-            {
-                case "SubEntrepeneursFromProjectSubEntrepeneurs":
-                    RefreshIndexedSubEntrepeneursFromProjectSubEntrepeneurs();
-                    break;
-                case "Builders":
-                    RefreshIndexedBuilders();
-                    break;
-                case "Categories":
-                    RefreshIndexedCategories();
-                    break;
-                case "Contacts":
-                    RefreshIndexedContacts();
-                    break;
-                case "CraftGroups":
-                    RefreshIndexedCraftGroups();
-                    break;
-                case "EnterpriseForms":
-                    RefreshIndexedEnterpriseForms();
-                    break;
-                case "Entrepeneurs":
-                    RefreshIndexedEntrepeneurs();
-                    break;
-                case "JobDescriptions":
-                    RefreshIndexedJobDescriptions();
-                    break;
-                case "Projects":
-                    RefreshIndexedProjects();
-                    break;
-                case "ProjectStatuses":
-                    RefreshIndexedProjectStatuses();
-                    break;
-                case "Regions":
-                    RefreshIndexedRegions();
-                    break;
-                case "RequestStatuses":
-                    RefreshIndexedRequestStatuses();
-                    break;
-                case "TenderForms":
-                    //RefreshIndexedTenderForms();
-                    break;
-                case "Users":
-                    RefreshIndexedUsers();
-                    break;
-                case "UserLevels":
-                    RefreshIndexedUserLevels();
-                    break;
-                case "ZipTowns":
-                    RefreshIndexedZipTowns();
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Job Descriptions
-        /// </summary>
-        private void RefreshIndexedJobDescriptions()
-        {
-            RefreshList("JobDescriptions");
-            IndexedJobDescriptions.Clear();
-
-            int i = 0;
-
-            foreach (JobDescription description in JobDescriptions)
-            {
-                IndexedJobDescriptions.Add(new IndexedJobDescription(i, description));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed Projects list
-        /// </summary>
-        private void RefreshIndexedProjects()
-        {
-            RefreshList("Projects");
-            RefreshIndexedProjectStatuses();
-            RefreshIndexedEnterpriseForms();
-            RefreshIndexedUsers();
-            RefreshIndexedBuilders();
-            IndexedProjects.Clear();
-
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            foreach (Project project in Projects)
-            {
-                IndexedProjects.Add(new IndexedProject(i, project));
-                i++;
-
-                if (project.Status.Id == 1)
-                {
-                    IndexedActiveProjects.Add(new IndexedProject(j, project));
-                    j++;
-                }
-                else
-                {
-                    IndexedInactiveProjects.Add(new IndexedProject(k, project));
-                    k++;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed Project Status list
-        /// </summary>
-        private void RefreshIndexedProjectStatuses()
-        {
-            RefreshList("ProjectStatuses");
-            IndexedProjectStatuses.Clear();
-
-            int i = 0;
-
-            foreach (ProjectStatus status in ProjectStatuses)
-            {
-                IndexedProjectStatuses.Add(new IndexedProjectStatus(i, status));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Regions list
-        /// </summary>
-        private void RefreshIndexedRegions()
-        {
-            RefreshList("Regions");
-            IndexedRegions.Clear();
-
-            int i = 0;
-
-            foreach (Region region in Regions)
-            {
-                IndexedRegions.Add(new IndexedRegion(i, region));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed Request Statuses list
-        /// </summary>
-        private void RefreshIndexedRequestStatuses()
-        {
-            RefreshList("RequestStatuses");
-            IndexedRequestStatuses.Clear();
-
-            int i = 0;
-
-            foreach (RequestStatus status in RequestStatuses)
-            {
-                IndexedRequestStatuses.Add(new IndexedRequestStatus(i, status));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method, that refreshes Indexed SubEntrepeneurs list
-        /// </summary>
-        private void RefreshIndexedSubEntrepeneurs()
-        {
-            RefreshList("SubEntrepeneurs");
-            RefreshIndexedEntrepeneurs();
-            RefreshIndexedEnterprises();
-            RefreshIndexedContacts();
-
-            int i = 0;
-
-            foreach (Project project in Projects)
-            {
-                IndexedProjects.Add(new IndexedProject(i, project));
-                i++;
-            }
-
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed Users
-        /// </summary>
-        private void RefreshIndexedUsers()
-        {
-            RefreshList("Users");
-            RefreshIndexedJobDescriptions();
-            RefreshIndexedUserLevels();
-            IndexedUsers.Clear();
-
-            int i = 0;
-            int j = 0;
-            int k = 0;
-
-            foreach (User user in Users)
-            {
-                IndexedUsers.Add(new IndexedUser(i, user));
-                i++;
-
-                switch (user.UserLevel.Id)
-                {
-                    case 0:
-                        IndexedInactiveUsers.Add(new IndexedUser(k, user));
-                        k++;
-                        break;
-                    default:
-                        IndexedActiveUsers.Add(new IndexedUser(j, user));
-                        j++;
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed User Levels
-        /// </summary>
-        private void RefreshIndexedUserLevels()
-        {
-            RefreshList("UserLevels");
-            IndexedUserLevels.Clear();
-
-            int i = 0;
-
-            foreach (UserLevel userLevel in UserLevels)
-            {
-                IndexedUserLevels.Add(new IndexedUserLevel(i, userLevel));
-                i++;
-            }
-        }
-
-        /// <summary>
-        /// Method that refreshes a list of Indexed ZipTowns
-        /// </summary>
-        private void RefreshIndexedZipTowns()
-        {
-            RefreshList("ZipTowns");
-            IndexedZipTowns.Clear();
-
-            int i = 0;
-
-            foreach (ZipTown zipTown in ZipTowns)
-            {
-                IndexedZipTowns.Add(new IndexedZipTown(i, zipTown));
-                i++;
-            }
-        }
-
-        #endregion
 
         /// <summary>
         /// Method, that loads images for buttons
@@ -796,7 +353,7 @@ namespace JudBizz
         public string RetrieveTownFromZip(string zip)
         {
             RetrieveTempZipTown(zip);
-            return TempZipTown.Town;
+            return MEF.TempZipTown.Town;
         }
 
         /// <summary>
@@ -805,7 +362,7 @@ namespace JudBizz
         /// <param name="zip">string</param>
         public void RetrieveTempZipTown(string zip)
         {
-            TempZipTown = new ZipTown();
+            MEF.TempZipTown = new ZipTown();
             bool zipFound = false;
             tempZip = zip;
 
@@ -818,11 +375,11 @@ namespace JudBizz
                 //Search valid in ZipTown list
                 if (validZip)
                 {
-                    foreach (ZipTown zipTown in ZipTowns)
+                    foreach (ZipTown zipTown in MEF.ZipTowns)
                     {
                         if (zipTown.Zip == zip)
                         {
-                            TempZipTown = zipTown;
+                            MEF.TempZipTown = zipTown;
                             zipFound = true;
                             break;
                         }
@@ -833,7 +390,7 @@ namespace JudBizz
 
             if (!zipFound)
             {
-                TempZipTown = GetZipTown(1100);
+                MEF.TempZipTown = MEF.GetZipTown(1100);
             }
 
         }
