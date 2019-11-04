@@ -97,7 +97,6 @@
     <Compile Include="DocCreator.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="ITextEvents .cs" />
-    <Compile Include="MacAddress.cs" />
     <Compile Include="PdfCreator.cs" />
     <Compile Include="PdfWriterEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -58,6 +58,7 @@
     <Compile Include="Entrepeneur.cs" />
     <Compile Include="IttLetter.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="MacAddress.cs" />
     <Compile Include="Paragraf.cs" />
     <Compile Include="LetterData.cs" />
     <Compile Include="Person.cs" />
