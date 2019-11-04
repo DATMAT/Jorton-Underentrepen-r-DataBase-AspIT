@@ -21,6 +21,8 @@ namespace JudBizz
     {
         #region Fields
 
+        private MyEntityFrameWork MEF = new MyEntityFrameWork();
+
         public CvrAPI CvrApi;
         public UkZipApi.UkZipApi UkZipApi;
         public bool UcMainEdited = false;
@@ -36,35 +38,6 @@ namespace JudBizz
         public ImageBrush broadButton = new ImageBrush();
         public ImageBrush greenIndicator = new ImageBrush();
         public ImageBrush redIndicator = new ImageBrush();
-
-        public List<IndexedBuilder> IndexedActiveBuilders = new List<IndexedBuilder>();
-        public List<IndexedEntrepeneur> IndexedActiveEntrepeneurs = new List<IndexedEntrepeneur>();
-        public List<IndexedProject> IndexedActiveProjects = new List<IndexedProject>();
-        public List<IndexedUser> IndexedActiveUsers = new List<IndexedUser>();
-        public List<IndexedBullet> IndexedBullets = new List<IndexedBullet>();
-        public List<IndexedBuilder> IndexedBuilders = new List<IndexedBuilder>();
-        public List<IndexedCategory> IndexedCategories = new List<IndexedCategory>();
-        public List<IndexedCraftGroup> IndexedCraftGroups = new List<IndexedCraftGroup>();
-        public List<IndexedContact> IndexedContacts = new List<IndexedContact>();
-        public List<IndexedEnterpriseForm> IndexedEnterpriseForms = new List<IndexedEnterpriseForm>();
-        public List<IndexedEnterprise> IndexedEnterprises = new List<IndexedEnterprise>();
-        public List<IndexedEntrepeneur> IndexedEntrepeneurs = new List<IndexedEntrepeneur>();
-        public List<IndexedBuilder> IndexedInactiveBuilders = new List<IndexedBuilder>();
-        public List<IndexedEntrepeneur> IndexedInactiveEntrepeneurs = new List<IndexedEntrepeneur>();
-        public List<IndexedProject> IndexedInactiveProjects = new List<IndexedProject>();
-        public List<IndexedUser> IndexedInactiveUsers = new List<IndexedUser>();
-        public List<IndexedJobDescription> IndexedJobDescriptions = new List<IndexedJobDescription>();
-        public List<IndexedParagraf> IndexedParagrafs = new List<IndexedParagraf>();
-        public List<IndexedProject> IndexedProjects = new List<IndexedProject>();
-        public List<IndexedProjectStatus> IndexedProjectStatuses = new List<IndexedProjectStatus>();
-        public List<IndexedRegion> IndexedRegions = new List<IndexedRegion>();
-        public List<IndexedRequest> IndexedRequests = new List<IndexedRequest>();
-        public List<IndexedRequestStatus> IndexedRequestStatuses = new List<IndexedRequestStatus>();
-        public List<IndexedSubEntrepeneur> IndexedSubEntrepeneurs = new List<IndexedSubEntrepeneur>();
-        //public List<IndexedTenderForm> IndexedTenderForms = new List<IndexedTenderForm>();
-        public List<IndexedUser> IndexedUsers = new List<IndexedUser>();
-        public List<IndexedUserLevel> IndexedUserLevels = new List<IndexedUserLevel>();
-        public List<IndexedZipTown> IndexedZipTowns = new List<IndexedZipTown>();
 
         #endregion
 

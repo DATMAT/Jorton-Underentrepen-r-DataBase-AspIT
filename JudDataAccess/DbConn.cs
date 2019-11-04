@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace JudDataAccess
 {
-    public class DbConn
+    public abstract class DbConn
     {
         #region Fields
         private SqlConnection myConnection;
