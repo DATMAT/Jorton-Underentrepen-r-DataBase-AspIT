@@ -1,16 +1,12 @@
-﻿using JudDataAccess;
-using JudRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using JudRepository;
 
-namespace JudBizz
+namespace JudDataAccess
 {
     public class MyEntityFrameWork : DbConn
     {

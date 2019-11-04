@@ -62,6 +62,7 @@
     <Compile Include="LetterData.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="ProjectDetail.cs" />
+    <Compile Include="ProjectLists.cs" />
     <Compile Include="Receiver.cs" />
     <Compile Include="Shipping.cs" />
     <Compile Include="JobDescription.cs" />
@@ -79,12 +80,6 @@
     <Compile Include="User.cs" />
     <Compile Include="UserLevel.cs" />
     <Compile Include="ZipTown.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JudDataAccess\JudDataAccess.csproj">
-      <Project>{aa780e01-092b-442c-a9b7-82a3593bbf76}</Project>
-      <Name>JudDataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
