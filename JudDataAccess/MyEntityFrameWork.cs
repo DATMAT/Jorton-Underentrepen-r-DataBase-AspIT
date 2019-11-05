@@ -155,7 +155,15 @@ namespace JudDataAccess
         /// <returns>bool</returns>
         private bool AddUser(User user, string passWord)
         {
-            return executor.AddUser(user.Person.Id, user.Initials, user.Department.Id, passWord, user.JobDescription.Id, user.UserLevel.Id);
+            string[] args = new string[6];
+            args[0] = user.Person.Id.ToString();
+            args[1] = user.Initials;
+            args[2] = user.Department.Id.ToString();
+            args[3] = passWord;
+            args[4] = user.JobDescription.Id.ToString();
+            args[5] = user.UserLevel.Id.ToString();
+
+            return Convert.ToBoolean(DbReturnBool(@"usersAddUser", args));
         }
 
         /// <summary>
@@ -1250,7 +1258,13 @@ namespace JudDataAccess
         /// <returns></returns>
         public bool CheckLogin(string initials, string passWord)
         {
-            return executor.CheckLogin(initials, passWord);
+            string[] args = new string[2];
+            args[0] = initials;
+            args[1] = passWord;
+
+            bool result = DbReturnBool(@"usersLogin", args);
+
+            return result;
         }
 
         /// <summary>
@@ -1563,8 +1577,13 @@ namespace JudDataAccess
         /// <returns></returns>
         public bool ChangePassword(string oldPassWord, string newPassWord)
         {
-            bool result = false;
-            result = executor.ChangePassword(CurrentUser.Id, oldPassWord, newPassWord);
+            string[] args = new string[3];
+            args[0] = CurrentUser.Id.ToString();
+            args[1] = oldPassWord;
+            args[2] = newPassWord;
+
+            bool result = DbReturnBool(@"usersUpdatePassword", args);
+
             return result;
         }
 
