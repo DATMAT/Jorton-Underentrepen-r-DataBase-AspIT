@@ -61,7 +61,6 @@ namespace JudDataAccess
 
             StrConnectionString = StrConnection;
 
-            //RefreshAllLists();
             RepoTypes = GetTypesFromAssembly("JudRepository");
         }
 

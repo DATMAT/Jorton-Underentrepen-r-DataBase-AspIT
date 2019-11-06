@@ -22,7 +22,7 @@ namespace JudBizz
     {
         #region Fields
 
-        private MyEntityFrameWork MEF = new MyEntityFrameWork();
+        private MyEntityFrameWork MEF;
 
         public CvrAPI CvrApi;
         public UkZipApi.UkZipApi UkZipApi;
@@ -45,13 +45,14 @@ namespace JudBizz
 
         #region Constructors
         /// <summary>
-        /// Empty Constructor
+        /// Default
         /// </summary>
         public Bizz()
         {
-            //RefreshAllInitialIndexedLists();
+            MEF = new MyEntityFrameWork();
             CvrApi = new CvrAPI(Repos.ZipTowns);
             UkZipApi = new UkZipApi.UkZipApi();
+            Repos = new RepoCollections();
 
             SetIndicators();
         }
