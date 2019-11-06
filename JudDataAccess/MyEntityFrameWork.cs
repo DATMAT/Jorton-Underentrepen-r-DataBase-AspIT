@@ -144,7 +144,18 @@ namespace JudDataAccess
         /// </summary>
         /// <param name="strSql"></param>
         /// <returns></returns>
-        public bool ProcesSqlQuery(string strSql) => executor.WriteToDataBase(strSql);
+        public bool ProcesSqlQuery(string strSql)
+        {
+            try
+            {
+                FunctionExecuteNonQuery(strSql);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
         #region Create
         /// <summary>
@@ -162,6 +173,8 @@ namespace JudDataAccess
             args[3] = passWord;
             args[4] = user.JobDescription.Id.ToString();
             args[5] = user.UserLevel.Id.ToString();
+
+
 
             return Convert.ToBoolean(DbReturnBool(@"usersAddUser", args));
         }
@@ -1531,7 +1544,7 @@ namespace JudDataAccess
 
             List<string> strResults;
 
-            strResults = executor.ReadListFromDataBase(list, id);
+            strResults = ReadListFromDataBase(list, id);
 
             int fieldAmount = GetFieldAmount(list);
 
@@ -1565,6 +1578,32 @@ namespace JudDataAccess
 
             return result;
         }
+
+        /// <summary>
+        /// Method, that retrieves a List from Db
+        /// </summary>
+        /// <param name="table">string</param>
+        /// <param name="id">int</param>
+        /// <returns>List<string></returns>
+        private List<string> ReadListFromDataBase(string table, int id = -1)
+        {
+            List<string> listRes = new List<string>();
+            DataTable dm = GetListDataTable(table, id);
+
+            foreach (DataRow row in dm.Rows)
+            {
+                string rowString = "";
+
+                for (int i = 0; i < row.Table.Columns.Count; i++)
+                {
+                    rowString += row[i] + ";";
+                }
+                rowString = rowString.Remove(rowString.Length - 1);
+                listRes.Add(rowString);
+            }
+            return listRes;
+        }
+
 
         #endregion
 
@@ -3604,5 +3643,63 @@ namespace JudDataAccess
 
         #endregion
 
+
+        /// <summary>
+        /// Method, that retrieves a DataTable containing a List
+        /// </summary>
+        /// <param name="table">string</param>
+        /// <returns>DataTable</returns>
+        private DataTable GetListDataTable(string table, int id = -1)
+        {
+            DataTable result = new DataTable();
+
+            switch (table)
+            {
+                case "Entrepeneurs":
+                    if (id >= 0)
+                    {
+                        result = DbReturnDataTable(@"SELECT * FROM [Entrepeneurs] WHERE [Id] = " + id);
+                    }
+                    else
+                    {
+                        result = DbReturnDataTable(@"SELECT * FROM [Entrepeneurs] ORDER BY [Cooperative] DESC, [Id] ASC");
+                    }
+                    break;
+                case "Users":
+                    if (id >= 0)
+                    {
+                        result = DbReturnDataTable(@"SELECT Id, Person, Initials, Department, JobDescription, UserLevel FROM [Users] WHERE [Id] = " + id);
+                    }
+                    else
+                    {
+                        result = DbReturnDataTable(@"SELECT Id, Person, Initials, Department, JobDescription, UserLevel FROM [Users]");
+                    }
+                    break;
+                default:
+                    if (id >= 0)
+                    {
+                        result = DbReturnDataTable(@"SELECT * FROM [" + table + "] WHERE [Id] = " + id);
+                    }
+                    else
+                    {
+                        result = DbReturnDataTable("SELECT * FROM " + table);
+                    }
+                    break;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Method, that retrieves a DataTable containing a List
+        /// Accepts the following tables: Enterprises, Shippings & SubEntrepeneurs
+        /// </summary>
+        /// <param name="table">string</param>
+        /// <param name="projectId">int</param>
+        /// <returns>DataTable</returns>
+        private DataTable GetProjectListDataTable(string table, int projectId)
+        {
+            return DbReturnDataTable(@"SELECT * FROM [" + table + @"] WHERE [Project] = " + projectId + "");
+        }
     }
 }
