@@ -65,6 +65,7 @@
     <Compile Include="ProjectDetail.cs" />
     <Compile Include="ProjectLists.cs" />
     <Compile Include="Receiver.cs" />
+    <Compile Include="RepoCollections.cs" />
     <Compile Include="Shipping.cs" />
     <Compile Include="JobDescription.cs" />
     <Compile Include="LegalEntity.cs" />
