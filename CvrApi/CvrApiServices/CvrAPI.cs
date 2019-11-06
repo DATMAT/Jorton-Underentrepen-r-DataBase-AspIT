@@ -15,6 +15,7 @@ using System.Threading;
 using System.Net;
 using System.IO;
 using System.Net.Mail;
+using System.Collections.ObjectModel;
 
 namespace CvrApiServices
 {
@@ -26,13 +27,13 @@ namespace CvrApiServices
         private Builder tempBuilder = new Builder();
         private LegalEntity tempLegalEntity = new LegalEntity();
         private Entrepeneur tempEntrepeneur = new Entrepeneur();
-        private List<ZipTown> zipTowns = new List<ZipTown>();
+        private ObservableCollection<ZipTown> zipTowns = new ObservableCollection<ZipTown>();
         private UpdateData updatedData = new UpdateData();
 
         #endregion
 
         #region Constructors
-        public CvrAPI(List<ZipTown> zipTowns)
+        public CvrAPI(ObservableCollection<ZipTown> zipTowns)
         {
             this.zipTowns = zipTowns;
         }

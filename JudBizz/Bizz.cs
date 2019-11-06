@@ -39,6 +39,7 @@ namespace JudBizz
         public ImageBrush broadButton = new ImageBrush();
         public ImageBrush greenIndicator = new ImageBrush();
         public ImageBrush redIndicator = new ImageBrush();
+        private RepoCollections repos;
 
         #endregion
 
@@ -49,7 +50,7 @@ namespace JudBizz
         public Bizz()
         {
             //RefreshAllInitialIndexedLists();
-            CvrApi = new CvrAPI(MEF.ZipTowns);
+            CvrApi = new CvrAPI(Repos.ZipTowns);
             UkZipApi = new UkZipApi.UkZipApi();
 
             SetIndicators();
@@ -58,6 +59,13 @@ namespace JudBizz
         #endregion
 
         #region Properties
+
+        public RepoCollections Repos
+        {
+            get { return repos; }
+            set { repos = value; }
+        }
+
         #endregion
 
         #region Methods
@@ -88,7 +96,7 @@ namespace JudBizz
             MEF.RefreshList("Users");
             if (MEF.CheckLogin(initials, passWord))
             {
-                foreach (User user in MEF.Users)
+                foreach (User user in Repos.Users)
                 {
                     if (user.Initials == initials && user.UserLevel.Id >= 1)
                     {
@@ -376,7 +384,7 @@ namespace JudBizz
                 //Search valid in ZipTown list
                 if (validZip)
                 {
-                    foreach (ZipTown zipTown in MEF.ZipTowns)
+                    foreach (ZipTown zipTown in Repos.ZipTowns)
                     {
                         if (zipTown.Zip == zip)
                         {

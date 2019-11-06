@@ -15,12 +15,9 @@ namespace JudDataAccess
         private static string strConnection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=JortonSubEnt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //private static string strConnection = @"Data Source=10.205.48.42,49172;Initial Catalog=JortonSubEnt;User Id=AspIT;Password=Server2012;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public ProjectLists ProjectLists = new ProjectLists();
-        private Executor executor = new Executor(strConnection);
         private MacAddress macAddress = new MacAddress();
         private string appPath = "";
         public DateTime oldDate = Convert.ToDateTime("1932-03-17");
-
-
 
         public User CurrentUser = new User();
         public Address TempAddress = new Address();
@@ -52,49 +49,7 @@ namespace JudDataAccess
         public User TempUser = new User();
         public ZipTown TempZipTown = new ZipTown();
 
-
-        #region Lists
-        public List<Builder> ActiveBuilders = new List<Builder>();
-        public List<Entrepeneur> ActiveEntrepeneurs = new List<Entrepeneur>();
-        public List<Project> ActiveProjects = new List<Project>();
-        public List<User> ActiveUsers = new List<User>();
-        public List<Address> Addresses = new List<Address>();
-        public List<Builder> Builders = new List<Builder>();
-        public List<Bullet> Bullets = new List<Bullet>();
-        public List<Category> Categories = new List<Category>();
-        public List<Contact> Contacts = new List<Contact>();
-        public List<ContactInfo> ContactInfoList = new List<ContactInfo>();
-        public List<CraftGroup> CraftGroups = new List<CraftGroup>();
-        public List<EnterpriseForm> EnterpriseForms = new List<EnterpriseForm>();
-        public List<Enterprise> Enterprises = new List<Enterprise>();
-        public List<Entrepeneur> Entrepeneurs = new List<Entrepeneur>();
-        public List<Builder> InactiveBuilders = new List<Builder>();
-        public List<Entrepeneur> InactiveEntrepeneurs = new List<Entrepeneur>();
-        public List<Project> InactiveProjects = new List<Project>();
-        public List<User> InactiveUsers = new List<User>();
-        public List<IttLetter> IttLetters = new List<IttLetter>();
-        public List<JobDescription> JobDescriptions = new List<JobDescription>();
-        public List<LegalEntity> LegalEntities = new List<LegalEntity>();
-        public List<LetterData> LetterDataList = new List<LetterData>();
-        public List<Offer> Offers = new List<Offer>();
-        public List<Paragraf> Paragrafs = new List<Paragraf>();
-        public List<Person> Persons = new List<Person>();
-        public List<ProjectDetail> ProjectDetails = new List<ProjectDetail>();
-        public List<Project> Projects = new List<Project>();
-        public List<ProjectStatus> ProjectStatuses = new List<ProjectStatus>();
-        public List<Receiver> Receivers = new List<Receiver>();
-        public List<Region> Regions = new List<Region>();
-        public List<Request> Requests = new List<Request>();
-        public List<RequestStatus> RequestStatuses = new List<RequestStatus>();
-        public List<Shipping> Shippings = new List<Shipping>();
-        public List<SubEntrepeneur> SubEntrepeneurs = new List<SubEntrepeneur>();
-        public List<TenderForm> TenderForms = new List<TenderForm>();
-        public List<UserLevel> UserLevels = new List<UserLevel>();
-        public List<User> Users = new List<User>();
-        public List<ZipTown> ZipTowns = new List<ZipTown>();
-        public List<Type> RepoTypes { get; private set; }
-
-        #endregion
+        public List<Type> RepoTypes = new List<Type>();
 
         #endregion
 
