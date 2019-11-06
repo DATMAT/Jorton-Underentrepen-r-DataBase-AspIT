@@ -72,9 +72,6 @@ namespace JudGui
         {
             InitializeComponent();
 
-            //UcTenderForms = new UcTenderForms();
-            //UcMain.Content = UcTenderForms;
-
             CBZ = new Bizz();
             ButtonChangePassWord.IsEnabled = false;
             ButtonLogOut.IsEnabled = false;
