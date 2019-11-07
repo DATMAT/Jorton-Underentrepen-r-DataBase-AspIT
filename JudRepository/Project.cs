@@ -1,5 +1,4 @@
-﻿using JudDataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -101,24 +100,6 @@ namespace JudRepository
             this.copy = project.Copy;
         }
 
-        /// <summary>
-        /// Constructor, that accepts data from an existing Indexed Project
-        /// </summary>
-        /// <param name="project">IndexedProject</param>
-        public Project(IndexedProject project)
-        {
-            this.id = project.Id;
-            this._case = project.Case;
-            this.builder = project.Builder;
-            this.status = project.Status;
-            this.tenderForm = project.TenderForm;
-            this.enterpriseForm = project.EnterpriseForm;
-            this.executive = project.Executive;
-            this.details = project.Details;
-            this.enterpriseList = project.EnterpriseList;
-            this.copy = project.Copy;
-        }
-
         #endregion
 
         #region Properties
@@ -155,6 +136,14 @@ namespace JudRepository
         public bool EnterpriseList { get => enterpriseList; }
 
         public bool Copy { get => copy; }
+
+        public string IndexedProject
+        {
+            get
+            {
+                return $"{_case} {Details.Name}";
+            }
+        }
 
         #endregion
 

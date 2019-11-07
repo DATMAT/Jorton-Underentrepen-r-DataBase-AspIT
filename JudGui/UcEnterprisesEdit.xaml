@@ -53,8 +53,6 @@
             <TextBlock>Sagsnummer*:</TextBlock>
         </Viewbox>
 
-        
-        
         <ComboBox x:Name="ComboBoxCaseId" 
                   FontSize="12" 
                   Grid.Column="3" Grid.Row="2" 
@@ -63,7 +61,8 @@
                   Margin="1"
                   HorizontalAlignment="Stretch" 
                   SelectionChanged="ComboBoxCaseId_SelectionChanged" 
-                  VerticalAlignment="Center" />
+                  VerticalAlignment="Center"
+                  DisplayMemberPath="IndexedProject"/>
 
         <Viewbox x:Name="LabelEnterprises"
                  Grid.Column="1"

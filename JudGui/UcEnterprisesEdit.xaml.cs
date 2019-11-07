@@ -257,8 +257,12 @@ namespace JudGui
         /// </summary>
         private void GenerateComboBoxCaseIdItems()
         {
-            ComboBoxCaseId.ItemsSource = "";
-            ComboBoxCaseId.ItemsSource = CBZ.IndexedActiveProjects;
+            CBZ.UpdateListEssentials();
+
+
+            // DANIEL
+            //ComboBoxCaseId.ItemsSource = "";
+            //ComboBoxCaseId.ItemsSource = CBZ.IndexedActiveProjects;
         }
 
         /// <summary>
